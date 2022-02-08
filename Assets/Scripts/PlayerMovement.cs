@@ -36,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float speed;
 
+    [SerializeField]
+    public bool bGrounded;
+
     void Start ()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -43,9 +46,25 @@ public class PlayerMovement : MonoBehaviour
 	
 	void Update ()
     {
-        Vector2 v2GroundedBoxCheckPosition = (Vector2)transform.position + new Vector2(0, -0.01f);
+        Vector2 v2GroundedBoxCheckPosition = (Vector2)transform.position + new Vector2(0, -0.02f);
         Vector2 v2GroundedBoxCheckScale = (Vector2)transform.localScale + new Vector2(-0.02f, 0);
-        bool bGrounded = Physics2D.OverlapBox(v2GroundedBoxCheckPosition, v2GroundedBoxCheckScale, 0, lmWalls);
+        Collider2D hit = Physics2D.OverlapBox(v2GroundedBoxCheckPosition, v2GroundedBoxCheckScale, 0, lmWalls);
+        bGrounded = false;
+        List<ContactPoint2D> contacts = new List<ContactPoint2D>();
+        if(hit != null)
+        {
+            hit.GetContacts(contacts);
+            for(int i = 0; i < contacts.Count; i++)
+            {
+                //Debug.Log((contacts[i].point - (Vector2)transform.position).normalized);
+                Vector2 normal = (contacts[i].point - (Vector2)transform.position).normalized;
+                if(Mathf.Abs(normal.x) < 0.15f && normal.y < 0)
+                {
+                    bGrounded = true;
+                }
+            }
+        }
+        //Physics2D.OverlapBox(v2GroundedBoxCheckPosition, v2GroundedBoxCheckScale, 0, lmWalls);
 
         groundedRemember -= Time.deltaTime;
         if (bGrounded)
