@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -38,5 +39,17 @@ public class UIManager : MonoBehaviour
     {
         instance.lives_counter += value;
         instance.lives.text = instance.lives_counter.ToString();
+    }
+
+    public static void LoadScene()
+    {
+        instance.StartCoroutine(LoadSceneAsync());
+    }
+
+    static IEnumerator LoadSceneAsync()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Debug.Log("Hi");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
