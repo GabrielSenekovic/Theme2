@@ -10,7 +10,12 @@ public class KillPlayer : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             UIManager.ChangeLives(-1);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            StartCoroutine(LoadScene());
         }
+    }
+    IEnumerator LoadScene()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
