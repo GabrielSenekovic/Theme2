@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     public bool bGrounded;
 
+    List<Vector3> contactPoints = new List<Vector3>();
+
     void Start ()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -48,19 +50,24 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 v2GroundedBoxCheckPosition = (Vector2)transform.position + new Vector2(0, -0.02f);
         Vector2 v2GroundedBoxCheckScale = (Vector2)transform.localScale + new Vector2(-0.02f, 0);
-        Collider2D hit = Physics2D.OverlapBox(v2GroundedBoxCheckPosition, v2GroundedBoxCheckScale, 0, lmWalls);
+        Collider2D[] hit = Physics2D.OverlapBoxAll(v2GroundedBoxCheckPosition, v2GroundedBoxCheckScale, 0, lmWalls);
         bGrounded = false;
-        List<ContactPoint2D> contacts = new List<ContactPoint2D>();
-        if(hit != null)
+        if(hit.Length > 0)
         {
-            hit.GetContacts(contacts);
-            for(int i = 0; i < contacts.Count; i++)
+            contactPoints.Clear();
+            for (int i = 0; i < hit.Length; i++)
             {
-                //Debug.Log((contacts[i].point - (Vector2)transform.position).normalized);
-                Vector2 normal = (contacts[i].point - (Vector2)transform.position).normalized;
-                if(Mathf.Abs(normal.x) < 0.15f && normal.y < 0)
+                List<ContactPoint2D> contacts = new List<ContactPoint2D>();
+                hit[i].GetContacts(contacts);
+                for (int j = 0; j < contacts.Count; j++)
                 {
-                    bGrounded = true;
+                    contactPoints.Add(contacts[j].point);
+                    //Debug.Log((contacts[i].point - (Vector2)transform.position).normalized);
+                    Vector2 normal = (contacts[j].point - v2GroundedBoxCheckPosition).normalized;
+                    if (Mathf.Abs(normal.x) < 0.5f && normal.y < 0)
+                    {
+                        bGrounded = true;
+                    }
                 }
             }
         }
@@ -109,5 +116,18 @@ public class PlayerMovement : MonoBehaviour
     private void LateUpdate() 
     {
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
+    }
+
+    private void OnDrawGizmos()
+    {
+        /*
+        Gizmos.color = Color.red;
+        for(int i = 0; i < contactPoints.Count; i++)
+        {
+            Gizmos.DrawSphere(contactPoints[i], 0.1f);
+        }
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube((Vector2)transform.position + new Vector2(0, -0.02f), (Vector2)transform.localScale + new Vector2(-0.02f, 0));
+        */
     }
 }
