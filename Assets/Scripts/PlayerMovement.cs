@@ -41,9 +41,12 @@ public class PlayerMovement : MonoBehaviour
 
     List<Vector3> contactPoints = new List<Vector3>();
 
+    Animator anim;
+
     void Start ()
     {
         rigid = GetComponent<Rigidbody2D>();
+        anim = GetComponentInChildren<Animator>();
 	}
 	
 	void Update ()
@@ -123,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
             horizontalVelocity *= Mathf.Pow(1f - horizontalDampingBasic, Time.deltaTime * 10f);
 
         rigid.velocity = new Vector2(horizontalVelocity, rigid.velocity.y);
+        anim.SetBool("Walking", Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0);
     }
 
     private void LateUpdate() 
