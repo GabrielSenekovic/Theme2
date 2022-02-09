@@ -79,6 +79,18 @@ public class PlayerMovement : MonoBehaviour
             groundedRemember = groundedRememberTime;
         }
 
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            Collider2D[] check = Physics2D.OverlapCircleAll(transform.position, 1);
+            for(int i = 0; i < check.Length; i++)
+            {
+                if(check[i].gameObject.CompareTag("Door"))
+                {
+                    check[i].gameObject.GetComponent<Door>().Open();
+                }
+            }
+        }
+
         jumpPressedRemember -= Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space))
         {
