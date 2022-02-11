@@ -11,8 +11,11 @@ public class GamblingBlock : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            GameObject obj = Instantiate<GameObject>(contents);
-            obj.transform.position = transform.position;
+            if(contents != null)
+            {
+                GameObject obj = Instantiate<GameObject>(contents);
+                obj.transform.position = transform.position;
+            }
             Destroy(gameObject);
         }
     }
