@@ -10,7 +10,15 @@ public class Door : MonoBehaviour
     public GameObject Player;
     public bool locked;
 
+    public Sprite lockedSprite;
+    public Sprite unlockedSprite;
+
     // Start is called before the first frame update
+
+    public void Start()
+    {
+        GetComponent<SpriteRenderer>().sprite = locked ? lockedSprite : unlockedSprite;
+    }
 
     public void Unlock(GameObject key)
     {
@@ -19,6 +27,7 @@ public class Door : MonoBehaviour
         {
             locked = false;
             Destroy(key);
+            GetComponent<SpriteRenderer>().sprite = unlockedSprite;
         }
     }
 
