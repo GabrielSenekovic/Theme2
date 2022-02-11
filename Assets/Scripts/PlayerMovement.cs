@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpPressedRemember = 0;
             groundedRemember = 0;
-            rigid.velocity = new Vector2(rigid.velocity.x, jumpVelocity);
+            rigid.velocity = new Vector2(rigid.velocity.x * 1.5f, jumpVelocity);
         }
 
         float horizontalVelocity = rigid.velocity.x;
