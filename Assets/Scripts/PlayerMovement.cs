@@ -49,7 +49,35 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 	}
 	
-	void Update ()
+    private void Update() 
+    {
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            Collider2D[] check = Physics2D.OverlapCircleAll(transform.position, 1);
+            for(int i = 0; i < check.Length; i++)
+            {
+                if(check[i].gameObject.CompareTag("Door"))
+                {
+                    check[i].gameObject.GetComponent<Door>().Open();
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jumpPressedRemember = jumpPressedRememberTime;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            if (rigid.velocity.y > 0)
+            {
+                rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * cutJumpHeight);
+            }
+        }
+    }
+
+	void FixedUpdate ()
     {
         Vector2 v2GroundedBoxCheckPosition = (Vector2)transform.position + new Vector2(0, -0.02f);
         Vector2 v2GroundedBoxCheckScale = (Vector2)transform.localScale + new Vector2(-0.02f, 0);
@@ -82,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
             groundedRemember = groundedRememberTime;
         }
 
-        if(Input.GetKeyDown(KeyCode.W))
+       /* if(Input.GetKeyDown(KeyCode.W))
         {
             Collider2D[] check = Physics2D.OverlapCircleAll(transform.position, 1);
             for(int i = 0; i < check.Length; i++)
@@ -92,10 +120,10 @@ public class PlayerMovement : MonoBehaviour
                     check[i].gameObject.GetComponent<Door>().Open();
                 }
             }
-        }
+        }*/
 
         jumpPressedRemember -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             jumpPressedRemember = jumpPressedRememberTime;
         }
@@ -106,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * cutJumpHeight);
             }
-        }
+        }*/
 
         if ((jumpPressedRemember > 0) && (groundedRemember > 0))
         {
