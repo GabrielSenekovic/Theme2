@@ -19,8 +19,12 @@ public class Key : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            transform.parent = other.transform;
-            transform.position = (Vector2)other.transform.position + new Vector2(0,YOffset);
+            if(other.gameObject.GetComponent<PlayerMovement>().bGrounded)
+            {
+                transform.parent = other.transform;
+                transform.position = (Vector2)other.transform.position + new Vector2(0,YOffset);
+                GetComponent<BoxCollider2D>().isTrigger = false;
+            }
         }
     }
 }
