@@ -648,6 +648,7 @@ GameObject:
   - component: {fileID: 852013239}
   - component: {fileID: 852013238}
   - component: {fileID: 852013237}
+  - component: {fileID: 852013240}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3143,7 +3144,7 @@ Tilemap:
       m_TileSpriteIndex: 1
       m_TileMatrixIndex: 1
       m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 1
       dummyAlignment: 0
       m_AllTileFlags: 1073741826
   - first: {x: 17, y: -3, z: 0}
@@ -4224,6 +4225,7 @@ GameObject:
   - component: {fileID: 1834006043}
   - component: {fileID: 1834006042}
   - component: {fileID: 1834006044}
+  - component: {fileID: 1834006045}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -4255,6 +4257,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1733066027}
+  - {fileID: 990965390}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

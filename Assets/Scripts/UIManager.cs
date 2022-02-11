@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     int lives_counter;
     int coins_counter;
     public Tilemap tilemap;
+    public Tilemap contentmap;
 
     static UIManager instance;
 
@@ -24,7 +25,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         if(!instance)
         {
