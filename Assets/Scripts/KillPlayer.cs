@@ -17,4 +17,21 @@ public class KillPlayer : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(GetComponent<Collider2D>().isTrigger)
+        {
+             if(other.gameObject.CompareTag("Player"))
+        {
+            UIManager.ChangeLives(-1);
+            UIManager.LoadScene();
+            if(destroyOnCollision)
+            {
+                Destroy(gameObject);
+            }
+        }
+        }
+    }
+
 }

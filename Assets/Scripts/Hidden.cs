@@ -8,6 +8,12 @@ public class Hidden : MonoBehaviour
 
     public Rigidbody2D rb;
     public GameObject contents;
+    public bool showHitBox = false;
+
+    private void Start()
+    {
+        GetComponent<SpriteRenderer>().enabled = showHitBox;
+    }
  
     public void OnCollisionEnter2D(Collision2D other) 
     {
