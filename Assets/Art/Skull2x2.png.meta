@@ -1,16 +1,31 @@
 fileFormatVersion: 2
-guid: ba0320d71f5188a489a14229578de796
+guid: 20206692914fdae47b3664cf1c4ae9c7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7873444928579934181
-    second: Cactus_0
+      213: 8872538927827401758
+    second: Skull_4x4_0
   - first:
-      213: 4438351552130452648
-    second: Cactus_1
+      213: 4076670697948727056
+    second: Skull_4x4_1
   - first:
-      213: -8484647995636279456
-    second: Cactus_2
+      213: 4354721294228912075
+    second: Skull_4x4_2
+  - first:
+      213: -4639165485891891917
+    second: Skull_4x4_3
+  - first:
+      213: 9142091718586969215
+    second: Skull2x2_0
+  - first:
+      213: 2251640124244446103
+    second: Skull2x2_1
+  - first:
+      213: -6143024190004733016
+    second: Skull2x2_2
+  - first:
+      213: -6178505867443163684
+    second: Skull2x2_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -96,56 +111,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 32
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 32
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cactus_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5e79b9e7278144d60800000000000000
-      internalID: 7873444928579934181
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cactus_1
+      name: Skull2x2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -159,14 +129,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ac0a05a831389d30800000000000000
-      internalID: 4438351552130452648
+      spriteID: f7caa6e2bfb3fde70800000000000000
+      internalID: 9142091718586969215
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cactus_2
+      name: Skull2x2_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79b4b9763ce6f3f10800000000000000
+      internalID: 2251640124244446103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull2x2_2
       rect:
         serializedVersion: 2
         x: 0
@@ -180,8 +171,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0679edff999704a80800000000000000
-      internalID: -8484647995636279456
+      spriteID: 8abd22cdb089fbaa0800000000000000
+      internalID: -6143024190004733016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull2x2_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd226016a9814aa0800000000000000
+      internalID: -6178505867443163684
       vertices: []
       indices: 
       edges: []
