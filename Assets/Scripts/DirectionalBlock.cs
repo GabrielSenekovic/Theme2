@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class DirectionalBlock : MonoBehaviour
 {
     public Vector2Int direction;
     public float speed;
     bool activated;
+
+    private void Start()
+    {
+        Vector3Int pos = UIManager.Instance.contentmap.WorldToCell(transform.position);
+        UIManager.Instance.contentmap.SetColor(pos, Color.clear);
+    }
 
     public void FixedUpdate()
     {
