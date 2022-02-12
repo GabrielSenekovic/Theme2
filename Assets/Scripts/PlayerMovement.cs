@@ -145,13 +145,21 @@ public class PlayerMovement : MonoBehaviour
 
         float horizontalVelocity = rigid.velocity.x;
         horizontalVelocity += Input.GetAxisRaw("Horizontal") * speed;
+        if(Input.GetAxisRaw("Horizontal") < 0) { transform.localScale = new Vector3(-1, 1,1);}
+        if(Input.GetAxisRaw("Horizontal") > 0) { transform.localScale = new Vector3(1, 1,1);}
 
         if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) < 0.01f)
+        {
             horizontalVelocity *= Mathf.Pow(1f - horizontalDampingWhenStopping, Time.deltaTime * 10f);
+        }
         else if (Mathf.Sign(Input.GetAxisRaw("Horizontal")) != Mathf.Sign(horizontalVelocity))
+        {
             horizontalVelocity *= Mathf.Pow(1f - horizontalDampingWhenTurning, Time.deltaTime * 10f);
+        }
         else
+        {
             horizontalVelocity *= Mathf.Pow(1f - horizontalDampingBasic, Time.deltaTime * 10f);
+        }
 
         rigid.velocity = new Vector2(horizontalVelocity, rigid.velocity.y);
         anim.SetBool("Walking", Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0);
