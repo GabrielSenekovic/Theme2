@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: -8484647995636279456
     second: Cactus_2
+  - first:
+      213: 1464250414856482592
+    second: Cactus_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -128,7 +131,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -149,7 +152,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -170,7 +173,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -182,6 +185,27 @@ TextureImporter:
       bones: []
       spriteID: 0679edff999704a80800000000000000
       internalID: -8484647995636279456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cactus_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02f2dbf8eff025410800000000000000
+      internalID: 1464250414856482592
       vertices: []
       indices: 
       edges: []
