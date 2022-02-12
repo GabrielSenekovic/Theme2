@@ -21,7 +21,8 @@ public class Hidden : MonoBehaviour
         {
              GameObject obj = Instantiate<GameObject>(contents);
             obj.transform.position = transform.position;
-            Destroy(gameObject);
+             GetComponent<SpriteRenderer>().enabled = showHitBox;
+            //Destroy(gameObject);
         }
     }
 
