@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1112952076412396340}
   - component: {fileID: 2806041543138110592}
   - component: {fileID: 6258349122673767490}
+  - component: {fileID: 2050887865914517350}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -114,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926e5cfdc54063844a94440c78579b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpSpeed: 2
 --- !u!50 &2806041543138110592
 Rigidbody2D:
   serializedVersion: 4
@@ -148,3 +150,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnCollision: 0
+--- !u!114 &2050887865914517350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102137468605004526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7399561f26e634ba2d16ad2ced4038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

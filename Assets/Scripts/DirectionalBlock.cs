@@ -38,6 +38,10 @@ public class DirectionalBlock : MonoBehaviour
         {
             activated = true;
         }
+            if(collision.gameObject.GetComponent<KillPlayer>())
+        {
+            Destroy(gameObject);
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {

@@ -59,7 +59,7 @@ public class Cannon : MonoBehaviour
                 Rigidbody2D leftRB = left.GetComponent<Rigidbody2D>();
                 //Vector3 leftRBVel = leftRB.velocity;
                 leftRB.velocity += new Vector2(-shootSpeed, 0);
-
+                startpos.x += 1;
             }
             else
             {
