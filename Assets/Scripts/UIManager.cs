@@ -39,13 +39,18 @@ public class UIManager : MonoBehaviour
             instance.coins_counter = 0;
             instance.lives.text = instance.lives_counter.ToString();
             instance.coins.text = instance.coins_counter.ToString();
-            ResetPlayer();
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
+    private void Start() 
+    {
+        checkPos = new Vector3(0f,0f,100f);
+    }
+
     public static void ChangeLives(int value)
     {
         instance.lives_counter += value;
@@ -65,18 +70,6 @@ public class UIManager : MonoBehaviour
     public static void LoadScene()
     {
         instance.StartCoroutine(LoadSceneAsync());
-    }
-
-    public static void ResetPlayer()
-    {
-        if(instance.checkPos != null)
-        {
-            instance.player.transform.position = instance.checkPos;
-        }
-        else
-        {
-            LoadScene();
-        }
     }
 
     static IEnumerator LoadSceneAsync()
