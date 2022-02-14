@@ -35,16 +35,22 @@ public class DirectionalBlock : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(!activated && collision.gameObject.CompareTag("Player")
+        Debug.Log(collision.gameObject.name);
+        if(!activated && ((collision.gameObject.CompareTag("Player")
             && collision.gameObject.transform.position.y > transform.position.y
-            && collision.gameObject.GetComponent<PlayerMovement>().bGrounded
+            && collision.gameObject.GetComponent<PlayerMovement>().bGrounded)
+            || collision.gameObject.GetComponent<Cannon>())
             )
         {
             activated = true;
         }
             if(collision.gameObject.GetComponent<KillPlayer>())
         {
-            Destroy(gameObject);
+            Vector2 tempDir = Vector2Int.RoundToInt ((Vector2)((collision.transform.position - transform.position).normalized));
+            if(tempDir == direction)
+            {
+                Destroy(gameObject);
+            }
         }
     }
     private void OnCollisionExit2D(Collision2D collision)

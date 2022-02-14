@@ -20,11 +20,17 @@ public class Cannon : MonoBehaviour
 
     private Renderer rend;
 
+    private bool hasRB = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rend = GetComponent<Renderer>();
+        if(projectile.GetComponent<Rigidbody2D>())
+        {
+            hasRB = true;
+        }
         switch(ShootDir)
         {
             case dir.LEFT: startpos = new Vector3(transform.position.x -1, transform.position.y, transform.position.z); break; 
@@ -48,29 +54,38 @@ public class Cannon : MonoBehaviour
                     startpos.x += 1;
                     GameObject right = Instantiate(projectile, startpos, transform.rotation);
 
-                    Rigidbody2D rightRB = right.GetComponent<Rigidbody2D>();
-                    //Vector3 rightRBVel = rightRB.velocity;
-                    rightRB.velocity += new Vector2(shootSpeed,0);
+                    if(hasRB)
+                    {
+                        Rigidbody2D rightRB = right.GetComponent<Rigidbody2D>();
+                        //Vector3 rightRBVel = rightRB.velocity;
+                        rightRB.velocity += new Vector2(shootSpeed,0);
+                    }
                 }
 
                 startpos.x -=2;
                 GameObject left = Instantiate(projectile, startpos, transform.rotation);
 
-                Rigidbody2D leftRB = left.GetComponent<Rigidbody2D>();
-                //Vector3 leftRBVel = leftRB.velocity;
-                leftRB.velocity += new Vector2(-shootSpeed, 0);
-                startpos.x += 1;
+                if(hasRB)
+                {
+                    Rigidbody2D leftRB = left.GetComponent<Rigidbody2D>();
+                    //Vector3 leftRBVel = leftRB.velocity;
+                    leftRB.velocity += new Vector2(-shootSpeed, 0);
+                    startpos.x += 1;
+                }
             }
             else
             {
                 GameObject proj = Instantiate(projectile, startpos, transform.rotation);
 
-                Rigidbody2D projRB = proj.GetComponent<Rigidbody2D>();
-                //Vector3 projRBVel = projRB.velocity;
+                if(hasRB)
+                {
+                    Rigidbody2D projRB = proj.GetComponent<Rigidbody2D>();
+                    //Vector3 projRBVel = projRB.velocity;
 
-                int s = ShootDir == dir.LEFT ? -1 : 1;
+                    int s = ShootDir == dir.LEFT ? -1 : 1;
 
-                projRB.velocity += new Vector2(s * shootSpeed, 0);
+                    projRB.velocity += new Vector2(s * shootSpeed, 0);
+                }
             }
         }
     }
