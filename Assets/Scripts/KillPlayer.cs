@@ -10,7 +10,7 @@ public class KillPlayer : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             UIManager.ChangeLives(-1);
-            UIManager.LoadScene();
+            UIManager.ResetPlayer();
             if(destroyOnCollision)
             {
                 Destroy(gameObject);
@@ -25,7 +25,7 @@ public class KillPlayer : MonoBehaviour
              if(other.gameObject.CompareTag("Player"))
         {
             UIManager.ChangeLives(-1);
-            UIManager.LoadScene();
+            UIManager.ResetPlayer();
             if(destroyOnCollision)
             {
                 Destroy(gameObject);
