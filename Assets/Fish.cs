@@ -11,6 +11,7 @@ public class Fish : MonoBehaviour
     {
         GetComponent<Rigidbody2D>().velocity += new Vector2(0,jumpSpeed);
         rb = GetComponent<Rigidbody2D>();
+
     }
 
     private void Update() 
