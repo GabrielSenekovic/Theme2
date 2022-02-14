@@ -8,9 +8,9 @@ public class DirectionalBlock : MonoBehaviour
     public Vector2Int direction;
     public float speed;
     bool activated;
-    bool initialized;
-    private void Update()
-    {
+    bool initialized = false;
+
+    private void Update() {
         if(!initialized)
         {
             Vector3Int pos = UIManager.Instance.contentmap.WorldToCell(transform.position);
@@ -18,7 +18,6 @@ public class DirectionalBlock : MonoBehaviour
             initialized = true;
         }
     }
-
     public void FixedUpdate()
     {
         if (!activated) { return; }
@@ -35,7 +34,6 @@ public class DirectionalBlock : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.name);
         if(!activated && ((collision.gameObject.CompareTag("Player")
             && collision.gameObject.transform.position.y > transform.position.y
             && collision.gameObject.GetComponent<PlayerMovement>().bGrounded)
@@ -43,6 +41,8 @@ public class DirectionalBlock : MonoBehaviour
             )
         {
             activated = true;
+            Vector3Int pos = UIManager.Instance.tilemap.WorldToCell(transform.position);
+            UIManager.Instance.tilemap.SetColor(pos, Color.clear);
         }
             if(collision.gameObject.GetComponent<KillPlayer>())
         {
