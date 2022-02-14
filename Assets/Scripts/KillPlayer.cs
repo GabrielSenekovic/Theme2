@@ -23,14 +23,14 @@ public class KillPlayer : MonoBehaviour
         if(GetComponent<Collider2D>().isTrigger)
         {
              if(other.gameObject.CompareTag("Player"))
-        {
-            UIManager.ChangeLives(-1);
-            UIManager.LoadScene();
-            if(destroyOnCollision)
             {
-                Destroy(gameObject);
+                UIManager.ChangeLives(-1);
+                UIManager.LoadScene();
+                if(destroyOnCollision)
+                {
+                    Destroy(gameObject);
+                }
             }
-        }
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     List<Vector3> contactPoints = new List<Vector3>();
 
     Animator anim;
+    public VisualEffect VFX; 
 
     void Start ()
     {
