@@ -17,6 +17,10 @@ public class UIManager : MonoBehaviour
 
     static UIManager instance;
 
+    public Vector3 checkPos;
+
+    public GameObject player;
+
     public static UIManager Instance
     {
         get
@@ -41,6 +45,12 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Start() 
+    {
+        checkPos = new Vector3(0f,0f,100f);
+    }
+
     public static void ChangeLives(int value)
     {
         instance.lives_counter += value;

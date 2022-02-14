@@ -49,6 +49,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        if(UIManager.Instance.checkPos.z != 100)
+        {
+            transform.position = UIManager.Instance.checkPos;
+        }
 	}
 	
     private void Update() 
