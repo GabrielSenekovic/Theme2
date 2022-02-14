@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if(Input.GetKeyDown(KeyCode.W))
+        if(Input.GetKeyDown(KeyCode.W) && bGrounded)
         {
             Collider2D[] check = Physics2D.OverlapCircleAll(transform.position, 1);
             for(int i = 0; i < check.Length; i++)
