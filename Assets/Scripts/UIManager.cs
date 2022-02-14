@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     int coins_counter;
     public Tilemap tilemap;
     public Tilemap contentmap;
+    public AudioClip death;
 
     static UIManager instance;
 
@@ -69,6 +70,7 @@ public class UIManager : MonoBehaviour
 
     public static void LoadScene()
     {
+        AudioManager.PlaySound(instance.death);
         instance.StartCoroutine(LoadSceneAsync());
     }
 

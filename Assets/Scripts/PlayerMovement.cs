@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     LayerMask lmWalls;
     [SerializeField]
     float jumpVelocity = 5;
+    public bool dead = false;
 
     Rigidbody2D rigid;
 
@@ -58,6 +59,12 @@ public class PlayerMovement : MonoBehaviour
 	
     private void Update() 
     {
+        if (dead)
+        {
+            rigid.velocity = new Vector2(0, 0);
+            return;
+        }
+
         if(Input.GetKeyDown(KeyCode.W))
         {
             Collider2D[] check = Physics2D.OverlapCircleAll(transform.position, 1);
@@ -86,6 +93,12 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate ()
     {
+        if (dead)
+        {
+            rigid.velocity = new Vector2(0, 0);
+            return;
+        }
+
         Vector2 v2GroundedBoxCheckPosition = (Vector2)transform.position + new Vector2(0, -0.02f);
         Vector2 v2GroundedBoxCheckScale = (Vector2)transform.localScale + new Vector2(-0.02f, 0);
         Collider2D[] hit = Physics2D.OverlapBoxAll(v2GroundedBoxCheckPosition, v2GroundedBoxCheckScale, 0, lmWalls);
