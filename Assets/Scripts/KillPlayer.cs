@@ -11,6 +11,16 @@ public class KillPlayer : MonoBehaviour
         {
             UIManager.ChangeLives(-1);
             UIManager.LoadScene();
+            if(collision.gameObject.GetComponent<PlayerMovement>())
+            {
+                collision.gameObject.GetComponent<PlayerMovement>().VFX.Play();
+                collision.gameObject.GetComponent<PlayerMovement>().renderer.color = Color.clear;
+            }
+            else if(collision.transform.parent.gameObject.GetComponent<PlayerMovement>())
+            {
+                collision.transform.parent.gameObject.GetComponent<PlayerMovement>().VFX.Play();
+                collision.transform.parent.gameObject.GetComponent<PlayerMovement>().renderer.color = Color.clear;
+            }
             if(destroyOnCollision)
             {
                 Destroy(gameObject);
@@ -22,10 +32,20 @@ public class KillPlayer : MonoBehaviour
     {
         if(GetComponent<Collider2D>().isTrigger)
         {
-             if(other.gameObject.CompareTag("Player"))
+            if(other.gameObject.CompareTag("Player"))
             {
                 UIManager.ChangeLives(-1);
                 UIManager.LoadScene();
+                if(other.gameObject.GetComponent<PlayerMovement>())
+                {
+                    other.gameObject.GetComponent<PlayerMovement>().VFX.Play();
+                    other.gameObject.GetComponent<PlayerMovement>().renderer.color = Color.clear;
+                }
+                else if(other.transform.parent.gameObject.GetComponent<PlayerMovement>())
+                {
+                    other.transform.parent.gameObject.GetComponent<PlayerMovement>().VFX.Play();
+                    other.transform.parent.gameObject.GetComponent<PlayerMovement>().renderer.color = Color.clear;
+                }
                 if(destroyOnCollision)
                 {
                     Destroy(gameObject);
@@ -33,5 +53,4 @@ public class KillPlayer : MonoBehaviour
             }
         }
     }
-
 }

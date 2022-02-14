@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     Animator anim;
     public VisualEffect VFX; 
+    public SpriteRenderer renderer;
 
     void Start ()
     {
