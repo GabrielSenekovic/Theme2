@@ -6,6 +6,7 @@ public class Diamond : MonoBehaviour
 {
     public int value;
     bool taken = false;
+    public AudioClip clip;
 
     private void Update()
     {
@@ -22,6 +23,7 @@ public class Diamond : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             taken = true;
+            AudioManager.PlaySound(clip);
         }
     }
 }

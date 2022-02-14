@@ -8,11 +8,15 @@ public class DirectionalBlock : MonoBehaviour
     public Vector2Int direction;
     public float speed;
     bool activated;
-
-    private void Start()
+    bool initialized;
+    private void Update()
     {
-        Vector3Int pos = UIManager.Instance.contentmap.WorldToCell(transform.position);
-        UIManager.Instance.contentmap.SetColor(pos, Color.clear);
+        if(!initialized)
+        {
+            Vector3Int pos = UIManager.Instance.contentmap.WorldToCell(transform.position);
+            UIManager.Instance.contentmap.SetColor(pos, Color.clear);
+            initialized = true;
+        }
     }
 
     public void FixedUpdate()
