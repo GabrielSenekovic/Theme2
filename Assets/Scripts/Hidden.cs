@@ -6,7 +6,7 @@ public class Hidden : MonoBehaviour
 {
 
 
-    public Rigidbody2D rb;
+    //public Rigidbody2D rb;
     public GameObject contents;
     public bool showHitBox = false;
 
@@ -21,8 +21,11 @@ public class Hidden : MonoBehaviour
     {
         if(other.gameObject.tag == "Player" && other.gameObject.transform.position.y < transform.position.y - 0.5f && !hit) 
         {
-            GameObject obj = Instantiate<GameObject>(contents);
-            obj.transform.position = transform.position;
+            if(contents.gameObject != null)
+            {
+                GameObject obj = Instantiate<GameObject>(contents);
+                obj.transform.position = transform.position;
+            }
             GetComponent<SpriteRenderer>().enabled = showHitBox;
             hit = true;
             //Destroy(gameObject);
