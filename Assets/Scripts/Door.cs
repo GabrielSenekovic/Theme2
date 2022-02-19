@@ -33,7 +33,7 @@ public class Door : MonoBehaviour
 
     public void Open() 
     {
-        if(!locked)
+        if(!locked && Player.transform.position.y  < transform.position.y - 0.2)
         Player.transform.position = DestinatorDoor.transform.position;
     }
 }
