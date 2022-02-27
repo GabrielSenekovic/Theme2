@@ -12,8 +12,8 @@ public class UIManager : MonoBehaviour
     public Text coins;
     int lives_counter;
     int coins_counter;
-    public Tilemap tilemap;
-    public Tilemap contentmap;
+    public Tilemap tileMap;
+    public Tilemap contentMap;
     public AudioClip death;
 
     static UIManager instance;

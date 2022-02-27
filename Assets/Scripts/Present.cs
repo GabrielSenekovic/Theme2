@@ -18,9 +18,9 @@ public class Present : MonoBehaviour
     {
         if(!initialized)
         {
-            Vector3Int pos = UIManager.Instance.contentmap.WorldToCell(transform.position);
-            content = UIManager.Instance.contentmap.GetTile(pos);
-            UIManager.Instance.contentmap.SetTile(pos, null);
+            Vector3Int pos = UIManager.Instance.contentMap.WorldToCell(transform.position);
+            content = UIManager.Instance.contentMap.GetTile(pos);
+            UIManager.Instance.contentMap.SetTile(pos, null);
             initialized = true;
         }
     }
@@ -41,9 +41,9 @@ public class Present : MonoBehaviour
                 else if(index == numbers.Length)
                 {
                     count = false;
-                    Vector3Int pos = UIManager.Instance.contentmap.WorldToCell(transform.position);
-                    UIManager.Instance.tilemap.SetTile(new Vector3Int(pos.x, pos.y + 1, pos.z), null);
-                    UIManager.Instance.tilemap.SetTile(pos, content);
+                    Vector3Int pos = UIManager.Instance.contentMap.WorldToCell(transform.position);
+                    UIManager.Instance.tileMap.SetTile(new Vector3Int(pos.x, pos.y + 1, pos.z), null);
+                    UIManager.Instance.tileMap.SetTile(pos, content);
                 }
             }
         }

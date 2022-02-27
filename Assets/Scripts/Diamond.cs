@@ -12,9 +12,9 @@ public class Diamond : MonoBehaviour
     {
         if(taken)
         {
-            Vector3Int pos = UIManager.Instance.tilemap.WorldToCell(transform.position);
+            Vector3Int pos = UIManager.Instance.tileMap.WorldToCell(transform.position);
             UIManager.ChangeCoins(value);
-            UIManager.Instance.tilemap.SetTile(pos, null);
+            UIManager.Instance.tileMap.SetTile(pos, null);
         }
     }
 

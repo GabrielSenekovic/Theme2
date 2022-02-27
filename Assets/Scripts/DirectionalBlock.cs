@@ -7,21 +7,33 @@ public class DirectionalBlock : MonoBehaviour
 {
     public Vector2Int direction;
     public float speed;
-    bool activated;
+    public bool activated;
     bool initialized = false;
 
-    private void Update() {
+    private void Update() 
+    {
         if(!initialized)
         {
-            Vector3Int pos = UIManager.Instance.contentmap.WorldToCell(transform.position);
-            UIManager.Instance.contentmap.SetColor(pos, Color.clear);
+            Vector3Int pos = UIManager.Instance.contentMap.WorldToCell(transform.position);
+            UIManager.Instance.contentMap.SetColor(pos, Color.clear);
             initialized = true;
+        }
+        if(speed > 0)
+        {
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position + (Vector3)(Vector2)direction * 0.5f, 1f/32f);
+            for(int i = 0; i < hits.Length; i++)
+            {
+                if(hits[i].gameObject.CompareTag("Tilemap") && hits[i].gameObject != gameObject)
+                {
+                    speed = 0;
+                }
+            }
         }
     }
     public void FixedUpdate()
     {
         if (!activated) { return; }
-        transform.position = new Vector3(transform.position.x + speed * direction.x, transform.position.y + speed * direction.y, transform.position.z);
+        transform.position = new Vector2(transform.position.x + direction.x * speed, transform.position.y + direction.y * speed);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -29,6 +41,13 @@ public class DirectionalBlock : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.transform.parent = transform;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.transform.parent = null;
         }
     }
 
@@ -41,23 +60,21 @@ public class DirectionalBlock : MonoBehaviour
             )
         {
             activated = true;
-            Vector3Int pos = UIManager.Instance.tilemap.WorldToCell(transform.position);
-            UIManager.Instance.tilemap.SetColor(pos, Color.clear);
+            Vector3Int pos = UIManager.Instance.tileMap.WorldToCell(transform.position);
+            UIManager.Instance.tileMap.SetColor(pos, Color.clear);
         }
-            if(collision.gameObject.GetComponent<KillPlayer>())
+        if(collision.gameObject.GetComponent<KillPlayer>())
         {
-            Vector2 tempDir = Vector2Int.RoundToInt ((Vector2)((collision.transform.position - transform.position).normalized));
-            if(tempDir == direction)
+            Vector2 dirToCollision = Vector2Int.RoundToInt ((Vector2)((collision.transform.position - transform.position).normalized));
+            if(dirToCollision == direction)
             {
                 Destroy(gameObject);
             }
         }
     }
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnDrawGizmos() 
     {
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.transform.parent = null;
-        }
+        //Gizmos.color = Color.cyan;
+        //Gizmos.DrawSphere(transform.position + (Vector3)(Vector2)direction * 0.5f, 1f/32f);
     }
 }

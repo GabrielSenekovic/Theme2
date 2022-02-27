@@ -10,16 +10,16 @@ public class BreakWhenFallenOn : MonoBehaviour
     {
         if(broken)
         {
-            Vector3Int pos = UIManager.Instance.tilemap.WorldToCell(transform.position);
-            if (UIManager.Instance.tilemap.GetTile(pos + Vector3Int.right) == UIManager.Instance.tilemap.GetTile(pos))
+            Vector3Int pos = UIManager.Instance.tileMap.WorldToCell(transform.position);
+            if (UIManager.Instance.tileMap.GetTile(pos + Vector3Int.right) == UIManager.Instance.tileMap.GetTile(pos))
             {
-                UIManager.Instance.tilemap.SetTile(pos + Vector3Int.right, null);
+                UIManager.Instance.tileMap.SetTile(pos + Vector3Int.right, null);
             }
-            if (UIManager.Instance.tilemap.GetTile(pos + Vector3Int.left) == UIManager.Instance.tilemap.GetTile(pos))
+            if (UIManager.Instance.tileMap.GetTile(pos + Vector3Int.left) == UIManager.Instance.tileMap.GetTile(pos))
             {
-                UIManager.Instance.tilemap.SetTile(pos + Vector3Int.left, null);
+                UIManager.Instance.tileMap.SetTile(pos + Vector3Int.left, null);
             }
-            UIManager.Instance.tilemap.SetTile(pos, null);
+            UIManager.Instance.tileMap.SetTile(pos, null);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

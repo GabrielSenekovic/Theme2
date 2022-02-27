@@ -10,7 +10,7 @@ public class GridManager : MonoBehaviour
 
     private void Start()
     {
-        UIManager.Instance.tilemap = tilemap;
-        UIManager.Instance.contentmap = content;
+        UIManager.Instance.tileMap = tilemap;
+        UIManager.Instance.contentMap = content;
     }
 }
