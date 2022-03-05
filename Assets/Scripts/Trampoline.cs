@@ -6,7 +6,7 @@ public class Trampoline : MonoBehaviour
 {
     bool bounce = false;
     public float bounceAmount;
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     public AudioClip jumping;
 
     public void Start()
@@ -17,13 +17,13 @@ public class Trampoline : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D other) 
     {
-        if(other.gameObject.tag == "Player" && other.gameObject.transform.position.y > transform.position.y + 0.75f) 
+        if(other.gameObject.GetComponent<Rigidbody2D>() && other.gameObject.transform.position.y > transform.position.y + 0.75f) 
         {
             
             bounce = true;
             Debug.Log(bounce);
             GetComponent<AudioSource>().Play();
-
+            rb = other.gameObject.GetComponent<Rigidbody2D>();
 
         }
     }

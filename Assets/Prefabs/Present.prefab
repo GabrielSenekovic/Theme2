@@ -77,6 +77,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 67aa743bbb009304784ed37529a419a8, type: 3}
   - {fileID: 21300000, guid: 9be136bf39855d443a7f42e91be3862c, type: 3}
   - {fileID: 21300000, guid: 21a5dd3f05e3d594c94b7376a735747b, type: 3}
+  count: 0
+  content: {fileID: 0}
 --- !u!1 &830447678272342708
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +149,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 32767
   m_Sprite: {fileID: 21300000, guid: 307df53bedc51964c81d4566b55d49ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
