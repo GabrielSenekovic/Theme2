@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b84a9e40cd23342b114a69feb26c01, type: 3}
   m_Name: WoodenPlatform
   m_EditorClassIdentifier: Assembly-CSharp::OverlappingRuleTile
-  m_DefaultSprite: {fileID: 21300000, guid: 5bd40b0d161aff3459d29560314dda5d, type: 3}
+  m_DefaultSprite: {fileID: 865617235290220692, guid: fc6cc171bb6d4f04b967f3c5a0ebe56c, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 1
     m_Sprites:
-    - {fileID: 21300000, guid: 7112479c9ed263049b8b08752bc16cca, type: 3}
+    - {fileID: 7006289954241438985, guid: fc6cc171bb6d4f04b967f3c5a0ebe56c, type: 3}
     m_GameObject: {fileID: 1198527711047763814, guid: 6c55a6456076d5b4ca6b86e4c38adb29, type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
@@ -33,7 +33,7 @@ MonoBehaviour:
     m_RuleTransform: 2
   - m_Id: 0
     m_Sprites:
-    - {fileID: 21300000, guid: a2d9b288a0198f94da66fe45786599f7, type: 3}
+    - {fileID: 5090944497503908062, guid: fc6cc171bb6d4f04b967f3c5a0ebe56c, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
@@ -48,7 +48,7 @@ MonoBehaviour:
     m_RuleTransform: 0
   - m_Id: 0
     m_Sprites:
-    - {fileID: 21300000, guid: 5bd40b0d161aff3459d29560314dda5d, type: 3}
+    - {fileID: 865617235290220692, guid: fc6cc171bb6d4f04b967f3c5a0ebe56c, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1

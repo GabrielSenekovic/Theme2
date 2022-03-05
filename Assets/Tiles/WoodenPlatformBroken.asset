@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b84a9e40cd23342b114a69feb26c01, type: 3}
   m_Name: WoodenPlatformBroken
   m_EditorClassIdentifier: Assembly-CSharp::OverlappingRuleTile
-  m_DefaultSprite: {fileID: 21300000, guid: be29105fbad5c1d45aff4315c86170f7, type: 3}
+  m_DefaultSprite: {fileID: 1033999923688410637, guid: fc6cc171bb6d4f04b967f3c5a0ebe56c, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
-    - {fileID: 21300000, guid: dd201827f59753c4fa584973b71e75b5, type: 3}
+    - {fileID: 6745281709620820991, guid: fc6cc171bb6d4f04b967f3c5a0ebe56c, type: 3}
     m_GameObject: {fileID: 1368981741784346719, guid: d768619f95cfcad47beb163e0c4e1e7c, type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
@@ -36,7 +36,7 @@ MonoBehaviour:
     m_RuleTransform: 0
   - m_Id: 1
     m_Sprites:
-    - {fileID: 21300000, guid: be29105fbad5c1d45aff4315c86170f7, type: 3}
+    - {fileID: 1033999923688410637, guid: fc6cc171bb6d4f04b967f3c5a0ebe56c, type: 3}
     m_GameObject: {fileID: 1368981741784346719, guid: d768619f95cfcad47beb163e0c4e1e7c, type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
