@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Cannon : MonoBehaviour
 {
@@ -22,28 +23,38 @@ public class Cannon : MonoBehaviour
 
     private bool hasRB = false;
 
+    private bool initialized;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        rend = GetComponent<Renderer>();
-        if(projectile.GetComponent<Rigidbody2D>())
-        {
-            hasRB = true;
-        }
         switch(ShootDir)
         {
             case dir.LEFT: startpos = new Vector3(transform.position.x -1, transform.position.y, transform.position.z); break; 
             case dir.RIGHT: startpos = new Vector3(transform.position.x +1, transform.position.y, transform.position.z); break; 
             case dir.BOTH: startpos = new Vector3(transform.position.x, transform.position.y, transform.position.z); break; 
         }
-        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(rend.isVisible) { timer++; }
+        if (!initialized)
+        {
+            Vector3Int pos = UIManager.Instance.contentMap.WorldToCell(transform.position);
+            RuleTile content = UIManager.Instance.contentMap.GetTile(pos) as RuleTile;
+            UIManager.Instance.contentMap.SetTile(pos, null);
+            projectile = content.m_DefaultGameObject;
+            rend = GetComponent<Renderer>();
+            if (projectile.GetComponent<Rigidbody2D>())
+            {
+                hasRB = true;
+            }
+            initialized = true;
+        }
+
+        if (rend.isVisible) { timer++; }
 
         if(timer >= shootFreq)
         {
@@ -81,8 +92,9 @@ public class Cannon : MonoBehaviour
                     return;
                 }
                 GameObject proj = Instantiate(projectile, startpos, transform.rotation);
-                
-                proj.GetComponent<DirectionalBlock>().activated = true;
+
+                if (proj.GetComponent<DirectionalBlock>())
+                { proj.GetComponent<DirectionalBlock>().activated = true; }
 
                 if(hasRB)
                 {
