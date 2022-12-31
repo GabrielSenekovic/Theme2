@@ -27,7 +27,7 @@ public class Hidden : MonoBehaviour
             UIManager.Instance.contentMap.SetTile(pos, null);
             if (content != null)
             { contents = content.m_DefaultGameObject; }
-            RuleTile tile = UIManager.Instance.tileMap.GetTile(pos) as RuleTile;
+            //RuleTile tile = UIManager.Instance.tileMap.GetTile(pos) as RuleTile;
             UIManager.Instance.tileMap.SetColor(pos, Color.clear);
             initialized = true;
         }
