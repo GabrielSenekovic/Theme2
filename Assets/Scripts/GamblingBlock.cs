@@ -25,6 +25,7 @@ public class GamblingBlock : MonoBehaviour
         {
             Vector3Int pos = UIManager.Instance.tileMap.WorldToCell(transform.position);
             UIManager.Instance.tileMap.SetTile(pos, content);
+            UIManager.Instance.tileMap.SetColor(pos, Color.clear);
         }
     }
 
