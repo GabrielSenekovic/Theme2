@@ -5,31 +5,39 @@ using System.Linq;
 
 public class OverworldPlayer : MonoBehaviour
 {
+    public OverworldLevel currentLevel;
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W) && OverworldManager.Instance.TileExists(transform.position + Vector3.up))
+        if(Input.GetKeyDown(KeyCode.W))
         {
-            transform.position += Vector3.up;
+            Move(Vector3.up);
         }
-        else if (Input.GetKeyDown(KeyCode.A) && OverworldManager.Instance.TileExists(transform.position + Vector3.left))
+        else if (Input.GetKeyDown(KeyCode.A))
         {
-            transform.position += Vector3.left;
+            Move(Vector3.left);
         }
-        else if (Input.GetKeyDown(KeyCode.D) && OverworldManager.Instance.TileExists(transform.position + Vector3.right))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
-            transform.position += Vector3.right;
+            Move(Vector3.right);
         }
-        else if (Input.GetKeyDown(KeyCode.S) && OverworldManager.Instance.TileExists(transform.position + Vector3.down))
+        else if (Input.GetKeyDown(KeyCode.S))
         {
-            transform.position += Vector3.down;
+            Move(Vector3.down);
         }
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && currentLevel != null)
         {
-            OverworldLevel level = null;
-            if (Physics2D.OverlapCircleAll(transform.position, 0.2f).First(c => c.gameObject.TryGetComponent<OverworldLevel>(out level)) && level != null)
-            {
-                level.LoadLevel();
-            }
+            currentLevel.LoadLevel();
         }
+    }
+    void Move(Vector3 direction)
+    {
+        Vector3 currentPosition = transform.position + direction;
+        Vector3 moveSteps = Vector3.zero;
+        while (OverworldManager.Instance.TileExists(currentPosition, ref currentLevel))
+        {
+            moveSteps += direction;
+            currentPosition += direction;
+        }
+        transform.position += moveSteps;
     }
 }
