@@ -31,7 +31,7 @@ public class Mouse : MonoBehaviour
         mousePosition = new Vector3(mousePosition.x, mousePosition.y, 0);
 
         //Debug.Log("MousePos: " + mousePosition);
-        TilemapHelper.mousePosition = map.WorldToCell(mousePosition);
+        //TilemapHelper.mousePosition = map.WorldToCell(mousePosition);
        // Debug.Log("Mouseposition is: " + TilemapHelper.mousePosition);
     }
 }
