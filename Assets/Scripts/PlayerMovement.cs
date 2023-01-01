@@ -156,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }*/
 
-        if ((jumpPressedRemember > 0) && (groundedRemember > 0))
+        if ((jumpPressedRemember > 0) && (groundedRemember > 0) && rigid.velocity.y == 0)
         {
             jumpPressedRemember = 0;
             groundedRemember = 0;
