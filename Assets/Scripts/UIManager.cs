@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Tilemaps;
 
 public class UIManager : MonoBehaviour
@@ -77,7 +78,6 @@ public class UIManager : MonoBehaviour
     static IEnumerator LoadSceneAsync()
     {
         yield return new WaitForSeconds(1.0f);
-        Debug.Log("Hi");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneLoader.Instance.Reload();
     }
 }
