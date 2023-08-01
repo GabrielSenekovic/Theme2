@@ -79,6 +79,6 @@ public class UIManager : MonoBehaviour
     static IEnumerator LoadSceneAsync()
     {
         yield return new WaitForSeconds(1.0f);
-        SceneLoader.Instance.Reload();
+        SceneLoader.Instance?.Reload();
     }
 }

@@ -8,8 +8,9 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 public class SceneLoader : MonoBehaviour
 {
     static SceneLoader instance;
-    string currentLevelKey;
     AsyncOperationHandle<SceneInstance> handle;
+
+    [SerializeField] string currentLevelKey;
 
     public static SceneLoader Instance
     {
