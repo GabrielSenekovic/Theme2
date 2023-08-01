@@ -11,6 +11,11 @@ public class Hedgehog : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private bool isStanding = false;
+
+    public Sprite[] spriteStates;
+    public GameObject colliderOB;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +26,29 @@ public class Hedgehog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 directionTranslation = (goingRight) ? transform.right : -transform.right;
-        directionTranslation *= Time.deltaTime *movementSpeed;
+        if ((UIManager.Instance.player.transform.position - transform.position).magnitude > 6)
+        {
+            Debug.Log((UIManager.Instance.player.transform.position - transform.position).magnitude);
+            if (isStanding == true)
+            {
+                isStanding = false;
+                //walking animation
+                spriteRenderer.sprite = spriteStates[0];
+            }
+            Vector3 directionTranslation = (goingRight) ? transform.right : -transform.right;
+            directionTranslation *= Time.deltaTime * movementSpeed;
 
-        transform.Translate(directionTranslation);
+            transform.Translate(directionTranslation);
 
 
-        CheckForWalls();
+            CheckForWalls();
+        }
+        else if (isStanding == false)
+        {
+            isStanding = true;
+            // stand up animation
+            spriteRenderer.sprite = spriteStates[1];
+        }
     }
 
     private void CheckForWalls()
