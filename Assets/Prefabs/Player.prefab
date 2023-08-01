@@ -89,15 +89,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   jumpVelocity: 8
+  dead: 0
+  climbing: 0
   jumpPressedRememberTime: 0.2
   groundedRememberTime: 0.25
   horizontalDampingBasic: 0.75
   horizontalDampingWhenStopping: 0.75
   horizontalDampingWhenTurning: 0.75
+  verticalDampingBasic: 0.5
+  verticalDampingWhenStopping: 0.5
+  verticalDampingWhenTurning: 0.5
   cutJumpHeight: 0.75
   speed: 1.4
   bGrounded: 0
-  VFX: {fileID: 7087876586716303840}
+  breakVFX: {fileID: 7087876586716303840}
   renderer: {fileID: 7087876587445619372}
 --- !u!1 &7087876586716303847
 GameObject:
@@ -140,8 +145,8 @@ VisualEffect:
   m_GameObject: {fileID: 7087876586716303847}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 26881e65d282b6544912233bf88b5498, type: 3}
-  m_InitialEventName: 
-  m_InitialEventNameOverriden: 1
+  m_InitialEventName: OnPlay
+  m_InitialEventNameOverriden: 0
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1

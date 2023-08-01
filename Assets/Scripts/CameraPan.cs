@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class CameraPan : MonoBehaviour
 {
-
     public GameObject[] corners;
     public float[] dists;
     public int stepsX;
@@ -60,16 +59,18 @@ public class CameraPan : MonoBehaviour
             {
                 Vector2 pos = (Vector2)corners[i].transform.position + dirs[i] * (float)s * checkWidth;
                 Vector3Int posI = new Vector3Int((int)pos.x, (int)pos.y, 0);
-               // UIManager.Instance.smallTileMap.SetTile(posI, test);
+                // UIManager.Instance.smallTileMap.SetTile(posI, test);
                 //UIManager.Instance.smallTileMap.SetColor(posI, Color.red);
-                if(UIManager.Instance.tileMap.GetTile(posI) == null) // if no big
+                Tilemap tileMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+                Tilemap modifierMap = UIManager.Instance.GetTileMap(TilemapFunction.TILEMAP);
+                if (tileMap.GetTile(posI) == null) // if no big
                 {
                    // bool hasSmallTile = true;
                     for(int smy = 0; smy < 2; smy++)
                     {
                         for(int smx = 0; smx < 2; smx++)
                         {
-                           if (UIManager.Instance.smallTileMap.GetTile(new Vector3Int(posI.x * 2 + smx -1, posI.y * 2 + smy -1, 0 )) == null)
+                           if (modifierMap.GetTile(new Vector3Int(posI.x * 2 + smx -1, posI.y * 2 + smy -1, 0 )) == null)
                            {
                                 //hasSmallTile = false;
                                 directionsOpen[i] = true;

@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Hidden : MonoBehaviour
 {
-
-
     //public Rigidbody2D rb;
     public GameObject contents;
     public bool showHitBox = false;
@@ -22,13 +21,16 @@ public class Hidden : MonoBehaviour
     {
         if (!initialized)
         {
-            Vector3Int pos = UIManager.Instance.contentMap.WorldToCell(transform.position);
-            RuleTile content = UIManager.Instance.contentMap.GetTile(pos) as RuleTile;
-            UIManager.Instance.contentMap.SetTile(pos, null);
+            Tilemap contentMap = UIManager.Instance.GetTileMap(TilemapFunction.CONTENT);
+            Vector3Int pos = contentMap.WorldToCell(transform.position);
+            RuleTile content = contentMap.GetTile(pos) as RuleTile;
+            contentMap.SetTile(pos, null);
+
             if (content != null)
             { contents = content.m_DefaultGameObject; }
-            //RuleTile tile = UIManager.Instance.tileMap.GetTile(pos) as RuleTile;
-            UIManager.Instance.tileMap.SetColor(pos, Color.clear);
+
+
+            UIManager.Instance.GetTileMap(TilemapFunction.OBJECT).SetColor(pos, Color.clear);
             initialized = true;
         }
     }

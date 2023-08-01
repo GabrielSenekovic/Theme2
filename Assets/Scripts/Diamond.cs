@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Diamond : MonoBehaviour
 {
@@ -12,9 +13,10 @@ public class Diamond : MonoBehaviour
     {
         if(taken)
         {
-            Vector3Int pos = UIManager.Instance.tileMap.WorldToCell(transform.position);
+            Tilemap tileMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+            Vector3Int pos = tileMap.WorldToCell(transform.position);
             UIManager.ChangeCoins(value);
-            UIManager.Instance.tileMap.SetTile(pos, null);
+            tileMap.SetTile(pos, null);
         }
     }
 

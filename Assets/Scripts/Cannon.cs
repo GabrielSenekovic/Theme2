@@ -42,9 +42,10 @@ public class Cannon : MonoBehaviour
     {
         if (!initialized)
         {
-            Vector3Int pos = UIManager.Instance.contentMap.WorldToCell(transform.position);
-            RuleTile content = UIManager.Instance.contentMap.GetTile(pos) as RuleTile;
-            UIManager.Instance.contentMap.SetTile(pos, null);
+            Tilemap contentMap = UIManager.Instance.GetTileMap(TilemapFunction.CONTENT);
+            Vector3Int pos = contentMap.WorldToCell(transform.position);
+            RuleTile content = contentMap.GetTile(pos) as RuleTile;
+            contentMap.SetTile(pos, null);
             projectile = content.m_DefaultGameObject;
             rend = GetComponent<Renderer>();
             if (projectile.GetComponent<Rigidbody2D>())
@@ -61,48 +62,51 @@ public class Cannon : MonoBehaviour
             timer = 0;
             if(ShootDir == dir.BOTH)
             {
-                {
-                    startpos.x += 1;
-                    GameObject right = Instantiate(projectile, startpos, transform.rotation);
-
-                    if(hasRB)
-                    {
-                        Rigidbody2D rightRB = right.GetComponent<Rigidbody2D>();
-                        //Vector3 rightRBVel = rightRB.velocity;
-                        rightRB.velocity += new Vector2(shootSpeed,0);
-                    }
-                }
-
-                startpos.x -=2;
-                GameObject left = Instantiate(projectile, startpos, transform.rotation);
-
-                if(hasRB)
-                {
-                    Rigidbody2D leftRB = left.GetComponent<Rigidbody2D>();
-                    //Vector3 leftRBVel = leftRB.velocity;
-                    leftRB.velocity += new Vector2(-shootSpeed, 0);
-                    startpos.x += 1;
-                }
+                ShootBothWays();
             }
             else
             {
-                int s = ShootDir == dir.LEFT ? -1 : 1;
-                if(Physics2D.OverlapBox((Vector2)transform.position + new Vector2(s, 0), new Vector2(0.5f, 0.5f), 0))
-                {
-                    return;
-                }
-                GameObject proj = Instantiate(projectile, startpos, transform.rotation);
-
-                if (proj.GetComponent<DirectionalBlock>())
-                { proj.GetComponent<DirectionalBlock>().activated = true; }
-
-                if(hasRB)
-                {
-                    Rigidbody2D projRB = proj.GetComponent<Rigidbody2D>();
-                    //Vector3 projRBVel = projRB.velocity;
-                    projRB.velocity = new Vector2(s * shootSpeed, 0);
-                }
+                Shoot();
             }
+        }
+    }
+    void ShootBothWays()
+    {
+        startpos.x += 1;
+        GameObject newProjectile = Instantiate(projectile, startpos, transform.rotation);
+
+        if (hasRB)
+        {
+            Rigidbody2D rightRB = newProjectile.GetComponent<Rigidbody2D>();
+            rightRB.velocity += new Vector2(shootSpeed, 0);
+        }
+
+        startpos.x -= 2;
+        newProjectile = Instantiate(projectile, startpos, transform.rotation);
+
+        if (hasRB)
+        {
+            Rigidbody2D leftRB = newProjectile.GetComponent<Rigidbody2D>();
+            leftRB.velocity += new Vector2(-shootSpeed, 0);
+            startpos.x += 1;
+        }
+    }
+    void Shoot()
+    {
+        int s = ShootDir == dir.LEFT ? -1 : 1;
+        if (Physics2D.OverlapBox((Vector2)transform.position + new Vector2(s, 0), new Vector2(0.5f, 0.5f), 0))
+        {
+            return;
+        }
+        GameObject proj = Instantiate(projectile, startpos, transform.rotation);
+
+        if (proj.GetComponent<DirectionalBlock>())
+        { proj.GetComponent<DirectionalBlock>().activated = true; }
+
+        if (hasRB)
+        {
+            Rigidbody2D projRB = proj.GetComponent<Rigidbody2D>();
+            projRB.velocity = new Vector2(s * shootSpeed, 0);
         }
     }
 }

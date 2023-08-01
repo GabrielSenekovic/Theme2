@@ -4,40 +4,24 @@ using UnityEngine;
 
 public class KillPlayer : MonoBehaviour
 {
-    public bool destroyOnCollision = false;
-
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
             UIManager.ChangeLives(-1);
-            UIManager.LoadScene();
 
-            if(collision.gameObject.GetComponent<PlayerMovement>())
+            PlayerMovement playerMovement = null;
+
+            if (collision.gameObject.GetComponent<PlayerMovement>())
             {
-                if (!collision.gameObject.GetComponent<PlayerMovement>().dead)
-                {
-                    collision.gameObject.GetComponent<PlayerMovement>().VFX.Play();
-                    collision.gameObject.GetComponent<PlayerMovement>().renderer.color = Color.clear;
-                    collision.gameObject.GetComponent<PlayerMovement>().dead = true;
-                }
+                playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
             }
             else if(collision.transform.parent.gameObject.GetComponent<PlayerMovement>())
             {
-                if (!collision.transform.parent.gameObject.GetComponent<PlayerMovement>().dead)
-                {
-                    collision.transform.parent.gameObject.GetComponent<PlayerMovement>().VFX.Play();
-                    collision.transform.parent.gameObject.GetComponent<PlayerMovement>().renderer.color = Color.clear;
-                    collision.transform.parent.gameObject.GetComponent<PlayerMovement>().dead = true;
-                }
+                playerMovement = collision.transform.parent.gameObject.GetComponent<PlayerMovement>();
+            }
 
-            }
-            if(destroyOnCollision)
-            {
-                Destroy(gameObject);
-            }
+            playerMovement.Die();
         }
     }
 
@@ -48,30 +32,19 @@ public class KillPlayer : MonoBehaviour
             if(other.gameObject.CompareTag("Player"))
             {
                 UIManager.ChangeLives(-1);
-                UIManager.LoadScene();
-                
-                if(other.gameObject.GetComponent<PlayerMovement>())
+
+                PlayerMovement playerMovement = null;
+
+                if (other.gameObject.GetComponent<PlayerMovement>())
                 {
-                    if (!other.gameObject.GetComponent<PlayerMovement>().dead)
-                    {
-                        other.gameObject.GetComponent<PlayerMovement>().VFX.Play();
-                        other.gameObject.GetComponent<PlayerMovement>().renderer.color = Color.clear;
-                        other.gameObject.GetComponent<PlayerMovement>().dead = true;
-                    }
+                    playerMovement = other.gameObject.GetComponent<PlayerMovement>();
                 }
-                else if(other.transform.parent.gameObject.GetComponent<PlayerMovement>())
+                else if (other.transform.parent.gameObject.GetComponent<PlayerMovement>())
                 {
-                        if (!other.transform.parent.gameObject.GetComponent<PlayerMovement>().dead)
-                        {
-                            other.transform.parent.gameObject.GetComponent<PlayerMovement>().VFX.Play();
-                            other.transform.parent.gameObject.GetComponent<PlayerMovement>().renderer.color = Color.clear;
-                            other.transform.parent.gameObject.GetComponent<PlayerMovement>().dead = true;
-                        }
+                    playerMovement = other.transform.parent.gameObject.GetComponent<PlayerMovement>();
                 }
-                if(destroyOnCollision)
-                {
-                    Destroy(gameObject);
-                }
+
+                playerMovement.Die();
             }
         }
     }

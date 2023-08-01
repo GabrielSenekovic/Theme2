@@ -16,17 +16,18 @@ public class GamblingBlock : MonoBehaviour
     {
         if (!initialized)
         {
-            Vector3Int pos = UIManager.Instance.contentMap.WorldToCell(transform.position);
-            //Debug.Log("Gambling: " + pos.z);
-            content = UIManager.Instance.contentMap.GetTile(pos);
-            UIManager.Instance.contentMap.SetTile(pos, null);
+            Tilemap contentMap = UIManager.Instance.GetTileMap(TilemapFunction.CONTENT);
+            Vector3Int pos = contentMap.WorldToCell(transform.position);
+            content = contentMap.GetTile(pos);
+            contentMap.SetTile(pos, null);
             initialized = true;
         }
         if(spawn)
         {
-            Vector3Int pos = UIManager.Instance.tileMap.WorldToCell(transform.position);
-            UIManager.Instance.tileMap.SetTile(pos, content);
-            UIManager.Instance.tileMap.SetColor(pos, Color.clear);
+            Tilemap tileMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+            Vector3Int pos = tileMap.WorldToCell(transform.position);
+            tileMap.SetTile(pos, content);
+            tileMap.SetColor(pos, Color.clear);
         }
     }
 

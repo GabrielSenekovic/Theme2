@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using System.Linq;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -55,13 +56,14 @@ public class PlayerMovement : MonoBehaviour
     List<Vector3> contactPoints = new List<Vector3>();
 
     Animator anim;
-    public VisualEffect VFX; 
+    public VisualEffect breakVFX; 
     public SpriteRenderer renderer;
 
     void Start ()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        breakVFX.enabled = false;
         if(UIManager.Instance.checkPos.z != 100)
         {
             transform.position = UIManager.Instance.checkPos;
@@ -88,26 +90,24 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-    
-            Collider2D[] checkRope = Physics2D.OverlapCircleAll(transform.position, 0.5f);
-            bool foundRope = false; 
-            for (int j = 0; j < checkRope.Length; j++)
-            {
-                if (checkRope[j].gameObject.CompareTag("Rope") )
-                {
-                    foundRope = true;
-                    if (Input.GetKeyDown(KeyCode.W))
-                    {
-                        climbing = true;
-                        rigid.velocity = new Vector2(0, 0);
-                        rigid.gravityScale = 0;
-                    }
-                }
-            }
-        if (!foundRope)
+        if (Input.GetKeyDown(KeyCode.W) && !climbing)
         {
-            climbing = false;
-            rigid.gravityScale = 2;
+            Collider2D[] checkRope = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+            if (checkRope.Any(r => r.gameObject.CompareTag("Rope")))
+            {
+                climbing = true;
+                rigid.velocity = new Vector2(0, 0);
+                rigid.gravityScale = 0;
+            }
+        }
+        else if (climbing)
+        {
+            Collider2D[] checkRope = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+            if (!checkRope.Any(r => r.gameObject.CompareTag("Rope")))
+            {
+                climbing = false;
+                rigid.gravityScale = 2;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -146,7 +146,6 @@ public class PlayerMovement : MonoBehaviour
                 for (int j = 0; j < contacts.Count; j++)
                 {
                     contactPoints.Add(contacts[j].point);
-                    //Debug.Log((contacts[i].point - (Vector2)transform.position).normalized);
                     Vector2 normal = (contacts[j].point - v2GroundedBoxCheckPosition).normalized;
                     if (Mathf.Abs(normal.x) < 0.5f && normal.y < 0)
                     {
@@ -155,7 +154,6 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        //Physics2D.OverlapBox(v2GroundedBoxCheckPosition, v2GroundedBoxCheckScale, 0, lmWalls);
 
         groundedRemember -= Time.deltaTime;
         if (bGrounded)
@@ -163,31 +161,7 @@ public class PlayerMovement : MonoBehaviour
             groundedRemember = groundedRememberTime;
         }
 
-       /* if(Input.GetKeyDown(KeyCode.W))
-        {
-            Collider2D[] check = Physics2D.OverlapCircleAll(transform.position, 1);
-            for(int i = 0; i < check.Length; i++)
-            {
-                if(check[i].gameObject.CompareTag("Door"))
-                {
-                    check[i].gameObject.GetComponent<Door>().Open();
-                }
-            }
-        }*/
-
         jumpPressedRemember -= Time.deltaTime;
-        /*if (Input.GetKeyDown(KeyCode.Space))
-        {
-            jumpPressedRemember = jumpPressedRememberTime;
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            if (rigid.velocity.y > 0)
-            {
-                rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * cutJumpHeight);
-            }
-        }*/
 
         if ((jumpPressedRemember > 0) && (groundedRemember > 0) && rigid.velocity.y == 0)
         {
@@ -198,15 +172,17 @@ public class PlayerMovement : MonoBehaviour
 
         float horizontalVelocity = rigid.velocity.x;
         float verticalVelocity = rigid.velocity.y;
-        horizontalVelocity += Input.GetAxisRaw("Horizontal") * speed;
-        if(Input.GetAxisRaw("Horizontal") < 0) { transform.localScale = new Vector3(-1, 1,1);}
-        if(Input.GetAxisRaw("Horizontal") > 0) { transform.localScale = new Vector3(1, 1,1);}
+        float rawHorizontal = Input.GetAxisRaw("Horizontal");
+        float rawVertical = Input.GetAxisRaw("Vertical");
+        horizontalVelocity += rawHorizontal * speed;
+        if(rawHorizontal < 0) { transform.localScale = new Vector3(-1, 1,1);}
+        if(rawHorizontal > 0) { transform.localScale = new Vector3(1, 1,1);}
 
-        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) < 0.01f)
+        if (Mathf.Abs(rawHorizontal) < 0.01f)
         {
             horizontalVelocity *= Mathf.Pow(1f - horizontalDampingWhenStopping, Time.deltaTime * 10f);
         }
-        else if (Mathf.Sign(Input.GetAxisRaw("Horizontal")) != Mathf.Sign(horizontalVelocity))
+        else if (Mathf.Sign(rawHorizontal) != Mathf.Sign(horizontalVelocity))
         {
             horizontalVelocity *= Mathf.Pow(1f - horizontalDampingWhenTurning, Time.deltaTime * 10f);
         }
@@ -217,13 +193,13 @@ public class PlayerMovement : MonoBehaviour
 
         if(climbing)
         {
-            verticalVelocity += Input.GetAxisRaw("Vertical") * speed;
+            verticalVelocity += rawVertical * speed;
 
-            if (Mathf.Abs(Input.GetAxisRaw("Vertical")) < 0.01f)
+            if (Mathf.Abs(rawVertical) < 0.01f)
             {
                 verticalVelocity *= Mathf.Pow(1f - verticalDampingWhenStopping, Time.deltaTime * 20f);
             }
-            else if (Mathf.Sign(Input.GetAxisRaw("Vertical")) != Mathf.Sign(verticalVelocity))
+            else if (Mathf.Sign(rawVertical) != Mathf.Sign(verticalVelocity))
             {
                 verticalVelocity *= Mathf.Pow(1f - verticalDampingWhenTurning, Time.deltaTime * 20f);
             }
@@ -235,24 +211,17 @@ public class PlayerMovement : MonoBehaviour
 
 
         rigid.velocity = new Vector2(horizontalVelocity, verticalVelocity);
-        anim.SetBool("Walking", Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0);
+        anim.SetBool("Walking", Mathf.Abs(rawHorizontal) > 0);
     }
-
-    private void LateUpdate() 
+    public void Die()
     {
-       // Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
-    }
-
-    private void OnDrawGizmos()
-    {
-        /*
-        Gizmos.color = Color.red;
-        for(int i = 0; i < contactPoints.Count; i++)
+        if (!dead)
         {
-            Gizmos.DrawSphere(contactPoints[i], 0.1f);
+            breakVFX.enabled = true;
+            breakVFX.Play();
+            renderer.color = Color.clear;
+            dead = true;
+            UIManager.LoadScene();
         }
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireCube((Vector2)transform.position + new Vector2(0, -0.02f), (Vector2)transform.localScale + new Vector2(-0.02f, 0));
-        */
     }
 }

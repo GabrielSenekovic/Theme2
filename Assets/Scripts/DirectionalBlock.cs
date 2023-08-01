@@ -14,8 +14,9 @@ public class DirectionalBlock : MonoBehaviour
     {
         if(!initialized)
         {
-            Vector3Int pos = UIManager.Instance.contentMap.WorldToCell(transform.position);
-            UIManager.Instance.contentMap.SetColor(pos, Color.clear);
+            Tilemap contentMap = UIManager.Instance.GetTileMap(TilemapFunction.CONTENT);
+            Vector3Int pos = contentMap.WorldToCell(transform.position);
+            contentMap.SetColor(pos, Color.clear);
             initialized = true;
         }
         if(speed > 0)
@@ -60,8 +61,9 @@ public class DirectionalBlock : MonoBehaviour
             )
         {
             activated = true;
-            Vector3Int pos = UIManager.Instance.tileMap.WorldToCell(transform.position);
-            UIManager.Instance.tileMap.SetColor(pos, Color.clear);
+            Tilemap tileMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+            Vector3Int pos = tileMap.WorldToCell(transform.position);
+            tileMap.SetColor(pos, Color.clear);
         }
         if(collision.gameObject.GetComponent<KillPlayer>())
         {
