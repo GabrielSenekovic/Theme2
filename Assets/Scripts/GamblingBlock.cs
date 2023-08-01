@@ -17,6 +17,7 @@ public class GamblingBlock : MonoBehaviour
         if (!initialized)
         {
             Vector3Int pos = UIManager.Instance.contentMap.WorldToCell(transform.position);
+            //Debug.Log("Gambling: " + pos.z);
             content = UIManager.Instance.contentMap.GetTile(pos);
             UIManager.Instance.contentMap.SetTile(pos, null);
             initialized = true;
