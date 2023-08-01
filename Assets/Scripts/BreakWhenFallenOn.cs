@@ -6,6 +6,8 @@ public class BreakWhenFallenOn : MonoBehaviour
 {
     bool broken = false;
 
+    float fallBreakSpeed = -6;
+
     private void Update()
     {
         if(broken)
@@ -26,7 +28,7 @@ public class BreakWhenFallenOn : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>())
         {
-            if(collision.gameObject.GetComponent<Rigidbody2D>().velocity.y < -8)
+            if(collision.gameObject.GetComponent<Rigidbody2D>().velocity.y < fallBreakSpeed)
             {
                 broken = true;
             }

@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float jumpVelocity = 5;
     public bool dead = false;
+    public bool climbing = false;
 
     Rigidbody2D rigid;
 
@@ -33,10 +34,20 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     [Range(0, 1)]
+    float verticalDampingBasic = 1f;
+    [SerializeField]
+    [Range(0, 1)]
+    float verticalDampingWhenStopping = 1f;
+    [SerializeField]
+    [Range(0, 1)]
+    float verticalDampingWhenTurning = 1f;
+
+    [SerializeField]
+    [Range(0, 1)]
     float cutJumpHeight = 0.5f;
 
     [SerializeField]
-    float speed;
+    public float speed;
 
     [SerializeField]
     public bool bGrounded;
@@ -67,14 +78,36 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.W) && bGrounded)
         {
-            Collider2D[] check = Physics2D.OverlapCircleAll(transform.position, 1);
-            for(int i = 0; i < check.Length; i++)
+            Collider2D[] checkDoor = Physics2D.OverlapCircleAll(transform.position, 1);
+            for(int i = 0; i < checkDoor.Length; i++)
             {
-                if(check[i].gameObject.CompareTag("Door"))
+                if(checkDoor[i].gameObject.CompareTag("Door"))
                 {
-                    check[i].gameObject.GetComponent<Door>().Open();
+                    checkDoor[i].gameObject.GetComponent<Door>().Open();
                 }
             }
+        }
+
+    
+            Collider2D[] checkRope = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+            bool foundRope = false; 
+            for (int j = 0; j < checkRope.Length; j++)
+            {
+                if (checkRope[j].gameObject.CompareTag("Rope") )
+                {
+                    foundRope = true;
+                    if (Input.GetKeyDown(KeyCode.W))
+                    {
+                        climbing = true;
+                        rigid.velocity = new Vector2(0, 0);
+                        rigid.gravityScale = 0;
+                    }
+                }
+            }
+        if (!foundRope)
+        {
+            climbing = false;
+            rigid.gravityScale = 2;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -164,6 +197,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         float horizontalVelocity = rigid.velocity.x;
+        float verticalVelocity = rigid.velocity.y;
         horizontalVelocity += Input.GetAxisRaw("Horizontal") * speed;
         if(Input.GetAxisRaw("Horizontal") < 0) { transform.localScale = new Vector3(-1, 1,1);}
         if(Input.GetAxisRaw("Horizontal") > 0) { transform.localScale = new Vector3(1, 1,1);}
@@ -181,13 +215,32 @@ public class PlayerMovement : MonoBehaviour
             horizontalVelocity *= Mathf.Pow(1f - horizontalDampingBasic, Time.deltaTime * 10f);
         }
 
-        rigid.velocity = new Vector2(horizontalVelocity, rigid.velocity.y);
+        if(climbing)
+        {
+            verticalVelocity += Input.GetAxisRaw("Vertical") * speed;
+
+            if (Mathf.Abs(Input.GetAxisRaw("Vertical")) < 0.01f)
+            {
+                verticalVelocity *= Mathf.Pow(1f - verticalDampingWhenStopping, Time.deltaTime * 20f);
+            }
+            else if (Mathf.Sign(Input.GetAxisRaw("Vertical")) != Mathf.Sign(verticalVelocity))
+            {
+                verticalVelocity *= Mathf.Pow(1f - verticalDampingWhenTurning, Time.deltaTime * 20f);
+            }
+            else
+            {
+                verticalVelocity *= Mathf.Pow(1f - verticalDampingBasic, Time.deltaTime * 20f);
+            }
+        }
+
+
+        rigid.velocity = new Vector2(horizontalVelocity, verticalVelocity);
         anim.SetBool("Walking", Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0);
     }
 
     private void LateUpdate() 
     {
-        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
+       // Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
     }
 
     private void OnDrawGizmos()
