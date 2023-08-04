@@ -16,7 +16,13 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 969ee44a7aaf4804393ce4c508a9d191
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: e46399175a8a2af45a6b6b55fe14b327
+    m_Address: Assets/Scenes/Troll_1-1.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: e46399175a8a2af45a6b6b55fe14b327, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: e46399175a8a2af45a6b6b55fe14b327, type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: cb791ac392b8bda49a3c53013af2921e, type: 2}
   m_SchemaSet:
