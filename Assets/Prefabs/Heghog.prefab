@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2500399765549692983}
   - component: {fileID: 2500399765549692982}
   - component: {fileID: 8698486292503905858}
+  - component: {fileID: 8770621876137390281}
+  - component: {fileID: 7651525732866676178}
   m_Layer: 0
   m_Name: Heghog
   m_TagString: Untagged
@@ -103,6 +105,9 @@ MonoBehaviour:
   - {fileID: -3205692492603588976, guid: b0ad35773babe774fb1f46c924a240ea, type: 3}
   - {fileID: 7265643239159823121, guid: b0ad35773babe774fb1f46c924a240ea, type: 3}
   colliderOB: {fileID: 0}
+  hostile: {fileID: 8770621876137390281}
+  vision: {fileID: 0}
+  angle: 0
 --- !u!58 &8698486292503905858
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -119,3 +124,33 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.08987033}
   serializedVersion: 2
   m_Radius: 0.41012967
+--- !u!114 &8770621876137390281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500399765549692981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453a49b3a8ea3364daf94985fa2ba3e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyOnCollision: 0
+  isOn: 0
+--- !u!58 &7651525732866676178
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500399765549692981}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3
