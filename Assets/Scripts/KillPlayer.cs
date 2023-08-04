@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class KillPlayer : MonoBehaviour
 {
+    public bool destroyOnCollision = false;
+    public bool isOn;
+
+    private void Update()
+    {
+        
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!isOn) return;
         if(collision.gameObject.CompareTag("Player"))
         {
             UIManager.ChangeLives(-1);
@@ -27,7 +36,8 @@ public class KillPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(GetComponent<Collider2D>().isTrigger)
+        if (!isOn) return;
+        if (GetComponent<Collider2D>().isTrigger)
         {
             if(other.gameObject.CompareTag("Player"))
             {
