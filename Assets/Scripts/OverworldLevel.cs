@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.ResourceManagement.ResourceProviders;
+
 
 public class OverworldLevel : MonoBehaviour
 {
@@ -25,7 +23,7 @@ public class OverworldLevel : MonoBehaviour
         GetNumberTile(pos + Vector3Int.right, out int val_2);
         int id = val_1 * 16 + val_2;
         string key = "Level " + id;
-        AsyncOperationHandle<SceneInstance> handle = Addressables.LoadSceneAsync(key);
+        SceneLoader.Instance.Load(key);
         initialized = true;
     }
     bool GetNumberTile(Vector3Int pos, out int val)

@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class CameraPan : MonoBehaviour
 {
-
     public GameObject[] corners;
     public float[] dists;
     public int stepsX;
@@ -17,13 +16,21 @@ public class CameraPan : MonoBehaviour
     public float camSpeed = 0.0f;
     public float[] panOffsets = new float[4];
 
+    Vector2[] dirs = new Vector2[4]
+        {
+            new Vector2(1.0f,0.0f),   //-->
+            new Vector2(0.0f, -1.0f), // V
+            new Vector2(-1.0f, 0.0f), // <--
+            new Vector2(0.0f, 1.0f)  // A
+        };
+
     // Start is called before the first frame update
     void Start()
     {
         panOffsets = new float[] { 2.0f, 2.0f, 0.0f, 0.0f }; // offset x, y, mid point x, y. 
 
-        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
-        //Debug.Log("pos x pos y cam: " + Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height)));
+        Vector3 camPos = Camera.main.transform.position;
+        Camera.main.transform.position = new Vector3(camPos.x - panOffsets[0], camPos.y - panOffsets[1], camPos.z);
         dists = new float[2];
         directionsOpen = new bool[4];
         for (int i = 0; i < 2; i++)
@@ -35,23 +42,8 @@ public class CameraPan : MonoBehaviour
         stepsY =  Mathf.RoundToInt(dists[1] / checkWidth);
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void LateUpdate()                                
-    {                                      
-        Vector2[] dirs = new Vector2[4] 
-        {  
-            new Vector2(1.0f,0.0f),   //-->
-            new Vector2(0.0f, -1.0f), // V
-            new Vector2(-1.0f, 0.0f), // <--
-            new Vector2(0.0f, 1.0f)  // A
-        };
-
+    {        
         for(int i = 0; i < 4; i++)
         {
             int dirSteps = dirs[i].x != 0 ? stepsX : stepsY;
@@ -60,16 +52,18 @@ public class CameraPan : MonoBehaviour
             {
                 Vector2 pos = (Vector2)corners[i].transform.position + dirs[i] * (float)s * checkWidth;
                 Vector3Int posI = new Vector3Int((int)pos.x, (int)pos.y, 0);
-               // UIManager.Instance.smallTileMap.SetTile(posI, test);
+                // UIManager.Instance.smallTileMap.SetTile(posI, test);
                 //UIManager.Instance.smallTileMap.SetColor(posI, Color.red);
-                if(UIManager.Instance.tileMap.GetTile(posI) == null) // if no big
+                Tilemap tileMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+                Tilemap modifierMap = UIManager.Instance.GetTileMap(TilemapFunction.TILEMAP);
+                if (tileMap.GetTile(posI) == null) // if no big
                 {
                    // bool hasSmallTile = true;
                     for(int smy = 0; smy < 2; smy++)
                     {
                         for(int smx = 0; smx < 2; smx++)
                         {
-                           if (UIManager.Instance.smallTileMap.GetTile(new Vector3Int(posI.x * 2 + smx -1, posI.y * 2 + smy -1, 0 )) == null)
+                           if (modifierMap.GetTile(new Vector3Int(posI.x * 2 + smx -1, posI.y * 2 + smy -1, 0 )) == null)
                            {
                                 //hasSmallTile = false;
                                 directionsOpen[i] = true;

@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    SpriteRenderer myRenderer;
+    [SerializeField]Sprite activatedSprite;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        myRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
@@ -23,6 +19,7 @@ public class CheckPoint : MonoBehaviour
             if(UIManager.Instance.checkPos != transform.position)
             {
                 UIManager.Instance.checkPos = transform.position;
+                myRenderer.sprite = activatedSprite;
             }
         }
     }

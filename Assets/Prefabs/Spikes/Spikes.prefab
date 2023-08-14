@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnCollision: 0
+  isOn: 1
 --- !u!61 &585405031061029106
 BoxCollider2D:
   m_ObjectHideFlags: 0

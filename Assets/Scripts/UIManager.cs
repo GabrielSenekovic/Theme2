@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Tilemaps;
+using System.Linq;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] List<TileMapFunctionData> tileMaps = new List<TileMapFunctionData>();
+
     Text timer;
     public Text lives;
     public Text coins;
     int lives_counter;
     int coins_counter;
-    public Tilemap tileMap;
-    public Tilemap contentMap;
-    public Tilemap smallTileMap;
     public AudioClip death;
 
     static UIManager instance;
@@ -52,7 +53,12 @@ public class UIManager : MonoBehaviour
     {
         checkPos = new Vector3(0f,0f,100f);
     }
-
+    public void SetTilemaps(List<TileMapFunctionData> tileMaps)
+    {
+        this.tileMaps.Clear();
+        this.tileMaps = tileMaps;
+    }
+    public Tilemap GetTileMap(TilemapFunction func) => tileMaps.First(t => t.func == func).map;
     public static void ChangeLives(int value)
     {
         instance.lives_counter += value;
@@ -78,7 +84,6 @@ public class UIManager : MonoBehaviour
     static IEnumerator LoadSceneAsync()
     {
         yield return new WaitForSeconds(1.0f);
-        Debug.Log("Hi");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneLoader.Instance?.Reload();
     }
 }

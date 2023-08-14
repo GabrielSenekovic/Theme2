@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class BreakWhenFallenOn : MonoBehaviour
 {
@@ -12,16 +13,17 @@ public class BreakWhenFallenOn : MonoBehaviour
     {
         if(broken)
         {
-            Vector3Int pos = UIManager.Instance.tileMap.WorldToCell(transform.position);
-            if (UIManager.Instance.tileMap.GetTile(pos + Vector3Int.right) == UIManager.Instance.tileMap.GetTile(pos))
+            Tilemap tileMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+            Vector3Int pos = tileMap.WorldToCell(transform.position);
+            if (tileMap.GetTile(pos + Vector3Int.right) == tileMap.GetTile(pos))
             {
-                UIManager.Instance.tileMap.SetTile(pos + Vector3Int.right, null);
+                tileMap.SetTile(pos + Vector3Int.right, null);
             }
-            if (UIManager.Instance.tileMap.GetTile(pos + Vector3Int.left) == UIManager.Instance.tileMap.GetTile(pos))
+            if (tileMap.GetTile(pos + Vector3Int.left) == tileMap.GetTile(pos))
             {
-                UIManager.Instance.tileMap.SetTile(pos + Vector3Int.left, null);
+                tileMap.SetTile(pos + Vector3Int.left, null);
             }
-            UIManager.Instance.tileMap.SetTile(pos, null);
+            tileMap.SetTile(pos, null);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
