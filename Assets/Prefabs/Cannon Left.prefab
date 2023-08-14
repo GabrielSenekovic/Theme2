@@ -123,6 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShootDir: 0
-  shootFreq: 60
+  shootCoolDown: 120
   projectile: {fileID: 0}
-  shootSpeed: 5
+  shootSpeed: 10

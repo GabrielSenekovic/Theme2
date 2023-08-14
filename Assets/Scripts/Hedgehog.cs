@@ -36,8 +36,8 @@ public class Hedgehog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawLine(origin, end);
-        Debug.DrawLine(new Vector2(1,1), transform.position);
+        //Debug.DrawLine(origin, end);
+        //Debug.DrawLine(new Vector2(1,1), transform.position);
         if (!isStanding)
         {
             Vector3 directionTranslation = (goingRight) ? transform.right : -transform.right;
@@ -52,7 +52,7 @@ public class Hedgehog : MonoBehaviour
     private void CheckForWalls()
     {
         Vector3 raycastDirection = (goingRight) ? Vector3.right : Vector3.left;
-        RaycastHit2D hit = Physics2D.RaycastAll(transform.position , raycastDirection, raycastingDistance)
+        RaycastHit2D hit = Physics2D.RaycastAll(transform.position - new Vector3(0,0.07f,0), raycastDirection, raycastingDistance)
             .FirstOrDefault(h=>h.transform.CompareTag("Tilemap"));
        
 
@@ -78,7 +78,7 @@ public class Hedgehog : MonoBehaviour
         {
             enteredGrounded = player.GetComponent<PlayerMovement>().bGrounded;
             angle = (AngleDeg(collision.ClosestPoint(transform.position)) +360)%360;
-            Debug.Log("angle: " + angle);
+            //Debug.Log("angle: " + angle);
         }
     }
 

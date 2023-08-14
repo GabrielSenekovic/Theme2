@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnCollision: 0
+  isOn: 1
 --- !u!114 &2050887865914517350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,3 +163,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af7399561f26e634ba2d16ad2ced4038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BreakOnImpact: 0

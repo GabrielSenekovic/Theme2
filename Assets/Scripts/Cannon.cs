@@ -12,8 +12,8 @@ public class Cannon : MonoBehaviour
 
     private Vector3 startpos;
 
-    public float shootFreq = 60;
-    private float timer = 0;
+    public float shootCoolDown = 60;
+    private float timer = 0f;
 
     public GameObject projectile;
 
@@ -29,6 +29,7 @@ public class Cannon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timer = shootCoolDown - 1;
         switch(ShootDir)
         {
             case dir.LEFT: startpos = new Vector3(transform.position.x -1, transform.position.y, transform.position.z); break; 
@@ -57,7 +58,7 @@ public class Cannon : MonoBehaviour
 
         if (rend.isVisible) { timer++; }
 
-        if(timer >= shootFreq)
+        if(timer >= shootCoolDown)
         {
             timer = 0;
             if(ShootDir == dir.BOTH)

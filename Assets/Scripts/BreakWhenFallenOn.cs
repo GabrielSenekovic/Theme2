@@ -7,7 +7,7 @@ public class BreakWhenFallenOn : MonoBehaviour
 {
     bool broken = false;
 
-    float fallBreakSpeed = -6;
+    float fallBreakSpeed = -2;
 
     private void Update()
     {
