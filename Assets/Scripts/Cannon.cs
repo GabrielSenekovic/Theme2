@@ -29,7 +29,7 @@ public class Cannon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = shootCoolDown - 1;
+        timer = shootCoolDown - 30;
         switch(ShootDir)
         {
             case dir.LEFT: startpos = new Vector3(transform.position.x -1, transform.position.y, transform.position.z); break; 

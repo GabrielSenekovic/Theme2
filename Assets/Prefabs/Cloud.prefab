@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af60509cb831c74a9584896ec6939dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter_limit: 360
+  counter_limit: 90
   hitbox: {fileID: 1905865623583046059}
   rend: {fileID: 3293775946933195509}
 --- !u!114 &7002909262410418095
