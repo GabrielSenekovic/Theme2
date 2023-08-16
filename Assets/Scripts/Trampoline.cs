@@ -21,7 +21,7 @@ public class Trampoline : MonoBehaviour
         {
             
             bounce = true;
-            Debug.Log(bounce);
+            //Debug.Log(bounce);
             GetComponent<AudioSource>().Play();
             rb = other.gameObject.GetComponent<Rigidbody2D>();
 

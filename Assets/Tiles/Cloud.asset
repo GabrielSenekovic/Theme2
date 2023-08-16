@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: Skull
+  m_Name: Cloud
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 21300000, guid: d34d1f4e4bf56684890daa4ac93c9ff3, type: 3}
-  m_DefaultGameObject: {fileID: 910768466851702694, guid: d2cc2677ce46c2d4191798d89b01c48b, type: 3}
+  m_DefaultSprite: {fileID: 21300000, guid: 901363fc89ee8bb4588fca5494dac16a, type: 3}
+  m_DefaultGameObject: {fileID: 7134519086598209289, guid: fe7035e9fbb0163409ae62019d8fa0c9, type: 3}
   m_DefaultColliderType: 0
   m_TilingRules: []

@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject player;
 
+    public GameObject portalHub;
+
     public static UIManager Instance
     {
         get

@@ -8,7 +8,7 @@ public class Hedgehog : MonoBehaviour
     public float movementSpeed = 3.0f;
     public bool goingRight = true;
 
-    public float raycastingDistance = 1f;
+    public float raycastingDistance = 0.5f;
 
     private SpriteRenderer spriteRenderer;
 
@@ -21,6 +21,8 @@ public class Hedgehog : MonoBehaviour
     public float angle = 0;
     private GameObject player;
     private bool enteredGrounded = true;
+    private Vector2 origin;
+    private Vector2 end;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,8 @@ public class Hedgehog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.DrawLine(origin, end);
+        //Debug.DrawLine(new Vector2(1,1), transform.position);
         if (!isStanding)
         {
             Vector3 directionTranslation = (goingRight) ? transform.right : -transform.right;
@@ -48,8 +52,9 @@ public class Hedgehog : MonoBehaviour
     private void CheckForWalls()
     {
         Vector3 raycastDirection = (goingRight) ? Vector3.right : Vector3.left;
-        RaycastHit2D hit = Physics2D.RaycastAll(transform.position + raycastDirection * raycastingDistance - new Vector3(0f, 0.25f, 0f), raycastDirection, 0.075f)
+        RaycastHit2D hit = Physics2D.RaycastAll(transform.position - new Vector3(0,0.07f,0), raycastDirection, raycastingDistance)
             .FirstOrDefault(h=>h.transform.CompareTag("Tilemap"));
+       
 
         if (hit.collider != null)
         {
@@ -73,7 +78,7 @@ public class Hedgehog : MonoBehaviour
         {
             enteredGrounded = player.GetComponent<PlayerMovement>().bGrounded;
             angle = (AngleDeg(collision.ClosestPoint(transform.position)) +360)%360;
-            Debug.Log("angle: " + angle);
+            //Debug.Log("angle: " + angle);
         }
     }
 

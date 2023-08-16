@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 8698486292503905858}
   - component: {fileID: 8770621876137390281}
   - component: {fileID: 7651525732866676178}
+  - component: {fileID: 3273435710727887201}
+  - component: {fileID: 2702652786139462859}
   m_Layer: 0
   m_Name: Heghog
   m_TagString: Untagged
@@ -100,7 +102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 3
   goingRight: 1
-  raycastingDistance: 1
+  raycastingDistance: 0.5
+  isStanding: 0
   spriteStates:
   - {fileID: -3205692492603588976, guid: b0ad35773babe774fb1f46c924a240ea, type: 3}
   - {fileID: 7265643239159823121, guid: b0ad35773babe774fb1f46c924a240ea, type: 3}
@@ -154,3 +157,50 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3
+--- !u!50 &3273435710727887201
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500399765549692981}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!61 &2702652786139462859
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500399765549692981}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.12681127}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.62212944, y: 0.3869934}
+  m_EdgeRadius: 0
