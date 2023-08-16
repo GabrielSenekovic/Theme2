@@ -7,11 +7,6 @@ public class KillPlayer : MonoBehaviour
     public bool destroyOnCollision = false;
     public bool isOn;
 
-    private void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!isOn) return;
