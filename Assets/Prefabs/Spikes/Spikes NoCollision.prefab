@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnCollision: 0
+  isOn: 0
 --- !u!61 &7201291086279007586
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -188,7 +189,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 270e432a80d84224095f1d59005918d6, type: 3}
+  m_Sprite: {fileID: 6723963429988506304, guid: 270e432a80d84224095f1d59005918d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

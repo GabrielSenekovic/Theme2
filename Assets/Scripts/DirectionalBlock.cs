@@ -10,6 +10,52 @@ public class DirectionalBlock : MonoBehaviour
     public bool activated;
     bool initialized = false;
 
+    [SerializeField] List<Sprite> sprites;
+
+    private void Start()
+    {
+        Vector3Int pos = new Vector3Int(Mathf.FloorToInt(transform.localPosition.x), Mathf.FloorToInt(transform.localPosition.y), (int)transform.localPosition.z) * 2;
+        GetModifierValue(pos, out ModifierTile.ModifierValue val);
+        direction = Vector2Int.zero;
+        if(val.HasFlag(ModifierTile.ModifierValue.Up))
+        {
+            direction.y = 1;
+            GetComponentInChildren<SpriteRenderer>().sprite = sprites[0];
+        }
+        else if(val.HasFlag(ModifierTile.ModifierValue.Down))
+        {
+            direction.y = -1;
+            GetComponentInChildren<SpriteRenderer>().sprite = sprites[1];
+        }
+        else if(val.HasFlag(ModifierTile.ModifierValue.Left))
+        {
+            direction.x = -1;
+            GetComponentInChildren<SpriteRenderer>().sprite = sprites[2];
+        }
+        else if(val.HasFlag(ModifierTile.ModifierValue.Right))
+        {
+            direction.x = 1;
+            GetComponentInChildren<SpriteRenderer>().sprite = sprites[3];
+        }
+        else
+        {
+            GetComponentInChildren<SpriteRenderer>().sprite = sprites[4];
+        }
+    }
+
+    bool GetModifierValue(Vector3Int pos, out ModifierTile.ModifierValue val)
+    {
+        ModifierTile tile = UIManager.Instance.GetTileMap(TilemapFunction.MODIFIER).GetTile(pos + Vector3Int.down) as ModifierTile;
+        UIManager.Instance.GetTileMap(TilemapFunction.MODIFIER).SetColor(pos + Vector3Int.down, Color.clear);
+        if (tile)
+        {
+            val = tile.value;
+            return true;
+        }
+        val = 0;
+        return false;
+    }
+
     private void Update() 
     {
         if(!initialized)

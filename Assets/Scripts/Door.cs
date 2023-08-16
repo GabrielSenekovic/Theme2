@@ -22,13 +22,9 @@ public class Door : MonoBehaviour
 
     public void Unlock(GameObject key)
     {
-        Debug.Log("unlock");
-        if(key == Key)
-        {
-            locked = false;
-            Destroy(key);
-            GetComponent<SpriteRenderer>().sprite = unlockedSprite;
-        }
+        locked = false;
+        Destroy(key);
+        GetComponent<SpriteRenderer>().sprite = unlockedSprite;
     }
 
     public void Open() 
