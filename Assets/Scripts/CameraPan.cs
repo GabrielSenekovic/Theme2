@@ -58,7 +58,6 @@ public class CameraPan : MonoBehaviour
                 // UIManager.Instance.smallTileMap.SetTile(posI, test);
                 if (objects.GetTile(posI) == null) // if no big
                 {
-                    tileMap.SetColor(posI * 2, Color.green);
                     // bool hasSmallTile = true;
                     for (int smy = -1; smy < 1; smy++)
                     {
