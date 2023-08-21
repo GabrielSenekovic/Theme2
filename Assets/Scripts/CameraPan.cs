@@ -30,7 +30,7 @@ public class CameraPan : MonoBehaviour
         panOffsets = new float[] { 2.0f, 2.0f, 0.0f, 0.0f }; // offset x, y, mid point x, y. 
 
         Vector3 camPos = Camera.main.transform.position;
-        Camera.main.transform.position = new Vector3(camPos.x - panOffsets[0], camPos.y - panOffsets[1], camPos.z);
+        //Camera.main.transform.position = new Vector3(camPos.x - panOffsets[0], camPos.y - panOffsets[1], camPos.z);
         dists = new float[2];
         directionsOpen = new bool[4];
         for (int i = 0; i < 2; i++)
