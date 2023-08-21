@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Door : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Door : MonoBehaviour
 
     public Sprite lockedSprite;
     public Sprite unlockedSprite;
+    public bool block;
 
     // Start is called before the first frame update
 
@@ -24,12 +26,19 @@ public class Door : MonoBehaviour
     {
         locked = false;
         Destroy(key);
-        GetComponent<SpriteRenderer>().sprite = unlockedSprite;
+        if (!block)
+        { GetComponent<SpriteRenderer>().sprite = unlockedSprite; }
+        else 
+        {
+            Tilemap tileMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+            Vector3Int pos = tileMap.WorldToCell(transform.position);
+            tileMap.SetTile(pos, null);
+        }
     }
 
     public void Open() 
     {
-        if(!locked && Player.transform.position.y  < transform.position.y - 0.2)
+        if( (!locked && Player.transform.position.y  < transform.position.y - 0.2) && !block)
         Player.transform.position = DestinatorDoor.transform.position;
     }
 }
