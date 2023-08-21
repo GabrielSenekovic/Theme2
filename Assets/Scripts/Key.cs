@@ -1,26 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
-public class Key : MonoBehaviour
+public class Key : MonoBehaviour, IPickupable
 {
-    // Start is called before the first frame update
-    public float YOffset;
-    void OnTriggerStay2D(Collider2D other)
+    public GameObject GameObject()
     {
-        if(other.gameObject.tag == "Door")
-        {
-            other.gameObject.GetComponent<Door>().Unlock(gameObject);
-        }
+        return gameObject;
+    }
+    public void OnLetGo()
+    {
+    }
 
-        if(other.gameObject.tag == "Player" && other.gameObject.GetComponent<CircleCollider2D>())
+    public void OnPickUp()
+    {
+        GetComponent<Collider2D>().enabled = false;
+    }
+
+    public bool UseItem(int dir)
+    {
+        Door door = null;
+        if(Physics2D.OverlapCircleAll(transform.position, 1).FirstOrDefault(c => c.TryGetComponent(out door)))
         {
-            if(other.gameObject.GetComponent<PlayerMovement>().bGrounded)
-            {
-                transform.parent = other.transform;
-                transform.position = (Vector2)other.transform.position + new Vector2(0,YOffset);
-                GetComponent<BoxCollider2D>().isTrigger = false;
-            }
+            door.Unlock(gameObject);
+            return true;
         }
+        return false;
     }
 }

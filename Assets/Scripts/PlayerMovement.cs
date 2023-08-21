@@ -59,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
     public VisualEffect breakVFX; 
     public SpriteRenderer renderer;
 
+    [SerializeField] Transform visualsTransform;
+
     void Start ()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -175,8 +177,8 @@ public class PlayerMovement : MonoBehaviour
         float rawHorizontal = Input.GetAxisRaw("Horizontal");
         float rawVertical = Input.GetAxisRaw("Vertical");
         horizontalVelocity += rawHorizontal * speed;
-        if(rawHorizontal < 0) { transform.localScale = new Vector3(-1, 1,1);}
-        if(rawHorizontal > 0) { transform.localScale = new Vector3(1, 1,1);}
+        if(rawHorizontal < 0) { visualsTransform.localScale = new Vector3(-1, 1,1);}
+        if(rawHorizontal > 0) { visualsTransform.localScale = new Vector3(1, 1,1);}
 
         if (Mathf.Abs(rawHorizontal) < 0.01f)
         {
@@ -212,6 +214,10 @@ public class PlayerMovement : MonoBehaviour
 
         rigid.velocity = new Vector2(horizontalVelocity, verticalVelocity);
         anim.SetBool("Walking", Mathf.Abs(rawHorizontal) > 0);
+    }
+    public int GetDirecton()
+    {
+        return Mathf.RoundToInt(visualsTransform.localScale.x);
     }
     public void Die()
     {

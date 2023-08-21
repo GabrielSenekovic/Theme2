@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: Cannon_Left
+  m_Name: TNT
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 3265060137090216594, guid: 555e1a62134449142acb1c691df5a601, type: 3}
-  m_DefaultGameObject: {fileID: 5879975023356623559, guid: 8f32ed97a2a00b047b3b6c54c6d5e41e, type: 3}
-  m_DefaultColliderType: 1
+  m_DefaultSprite: {fileID: -8136218936520485124, guid: fb8dd7a22f305044a850761405d5935b, type: 3}
+  m_DefaultGameObject: {fileID: 2922868888510219820, guid: 2e07b968c61898c4cb9e19d1be4a5939, type: 3}
+  m_DefaultColliderType: 0
   m_TilingRules: []

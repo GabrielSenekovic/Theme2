@@ -1671,7 +1671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1768897679269872621, guid: 05516a56ea6a36b4686183a5ab93d089, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1768897679269872621, guid: 05516a56ea6a36b4686183a5ab93d089, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8930,6 +8930,16 @@ Transform:
   m_Father: {fileID: 553482682}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &747409710 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7087876587275212468, guid: 898c27675bc82bc4c9386da2c7a80366, type: 3}
+  m_PrefabInstance: {fileID: 1522676845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1125119053 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7087876587445619347, guid: 898c27675bc82bc4c9386da2c7a80366, type: 3}
+  m_PrefabInstance: {fileID: 1522676845}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1246432410
 GameObject:
   m_ObjectHideFlags: 0
@@ -9207,6 +9217,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7087876585799304653, guid: 898c27675bc82bc4c9386da2c7a80366, type: 3}
+      propertyPath: visualsTransform
+      value: 
+      objectReference: {fileID: 1125119053}
     - target: {fileID: 7087876586716303841, guid: 898c27675bc82bc4c9386da2c7a80366, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -9222,6 +9236,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7087876585799304625, guid: 898c27675bc82bc4c9386da2c7a80366, type: 3}
   m_PrefabInstance: {fileID: 1522676845}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1522676847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522676846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3cd09bcd008dc34aa685750931d2528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 747409710}
 --- !u!1 &1625025183
 GameObject:
   m_ObjectHideFlags: 0
