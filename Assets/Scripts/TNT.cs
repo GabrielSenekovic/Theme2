@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TNT : MonoBehaviour, IPickupable
@@ -12,6 +13,8 @@ public class TNT : MonoBehaviour, IPickupable
 
     float explosionSensitivityTimer; //Within this window, the TNT cannot be exploded by contact
     float explosionSensitivityTimerMax = 0.2f;
+
+    [SerializeField] float explosionRadius;
 
     private void Awake()
     {
@@ -64,6 +67,18 @@ public class TNT : MonoBehaviour, IPickupable
     }
     void Explode()
     {
+        List<Collider2D> colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius).Where(c => c.GetComponent<Breakable>()).ToList();
+        foreach(Collider2D col in colliders)
+        {
+            if(col.TryGetComponent(out Breakable breakable))
+            {
+                breakable.Explode();
+            }
+            if(col.TryGetComponent(out Rigidbody2D body))
+            {
+
+            }
+        }
         Destroy(gameObject);
     }
 }
