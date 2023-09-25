@@ -9,7 +9,8 @@ public enum TilemapFunction
     OBJECT = 1,
     CONTENT = 2,
     TILEMAP = 3,
-    MODIFIER = 4
+    MODIFIER = 4,
+    CAMERA = 5
 }
 [System.Serializable]
 public class TileMapFunctionData
