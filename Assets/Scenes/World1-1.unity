@@ -11616,7 +11616,7 @@ PrefabInstance:
     - target: {fileID: 2982200267887337382, guid: e255ceb4686fc4746ba0294d636f7fe3, type: 3}
       propertyPath: portalHub
       value: 
-      objectReference: {fileID: 972235465}
+      objectReference: {fileID: 972235466}
     - target: {fileID: 6023060506951364918, guid: e255ceb4686fc4746ba0294d636f7fe3, type: 3}
       propertyPath: m_Enabled
       value: 0
