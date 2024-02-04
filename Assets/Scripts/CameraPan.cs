@@ -18,8 +18,7 @@ public class CameraPan : MonoBehaviour
     public float[] panOffsets = new float[4];
 
     Tilemap objectsMap;
-    Tilemap tileMap;
-    Tilemap CameraMap;
+    Tilemap cameraMap;
 
     public enum WALLS { LEFT, RIGHT, BOTH, NONE };
 
@@ -37,8 +36,7 @@ public class CameraPan : MonoBehaviour
     void Start()
     {
         objectsMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
-        tileMap = UIManager.Instance.GetTileMap(TilemapFunction.TILEMAP);
-        CameraMap = UIManager.Instance.GetTileMap(TilemapFunction.CAMERA);
+        cameraMap = UIManager.Instance.GetTileMap(TilemapFunction.CAMERA);
 
         panOffsets = new float[] { 1.0f, 1.0f, 0.0f, 0.0f }; // offset x, y, mid point x, y. 
 
@@ -54,7 +52,10 @@ public class CameraPan : MonoBehaviour
         stepsX =  Mathf.RoundToInt(dists[0] / checkWidth); // make sure this is rounded anyway
         stepsY =  Mathf.RoundToInt(dists[1] / checkWidth);
 
-        CalibratePosition();
+        if(cameraMap != null)
+        {
+            CalibratePosition();
+        }
     }
 
     void CalibratePosition()
@@ -139,7 +140,7 @@ public class CameraPan : MonoBehaviour
             //g.transform.position = checkingPosition;
             //GameObject.Instantiate(g);
 
-            if (CameraMap.GetTile(checkingPosition) == null)
+            if (cameraMap.GetTile(checkingPosition) == null)
             {
                 GameObject g = new GameObject();
                 g.transform.position = checkingPosition;
@@ -162,7 +163,7 @@ public class CameraPan : MonoBehaviour
             {
                 Vector2 pos = (Vector2)corners[i].transform.position + dirs[i] * (float)steps * checkWidth;
                 Vector3Int posI = new Vector3Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y), 0);
-                if (CameraMap.GetTile(posI) == null) // if no big
+                if (cameraMap.GetTile(posI) == null) // if no big
                 {
                     directionsOpen[i] = true;
                 }
@@ -208,10 +209,13 @@ public class CameraPan : MonoBehaviour
 
     private void LateUpdate()                                
     {
-        CheckForSolidTileWallsOnCameraEdge();
-
-        DrawDebugLines();
-        MoveCamera();
+        if(cameraMap != null)
+        {
+            CheckForSolidTileWallsOnCameraEdge();
+            DrawDebugLines();
+            MoveCamera();
+        }
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
     }
     void DrawDebugLines()
     {

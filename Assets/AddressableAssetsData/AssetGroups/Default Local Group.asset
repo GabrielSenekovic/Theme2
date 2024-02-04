@@ -18,11 +18,29 @@ MonoBehaviour:
   m_GUID: 969ee44a7aaf4804393ce4c508a9d191
   m_SerializeEntries:
   - m_GUID: e46399175a8a2af45a6b6b55fe14b327
-    m_Address: Assets/Scenes/Troll_1-1.unity
+    m_Address: Test 1
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 102900000, guid: e46399175a8a2af45a6b6b55fe14b327, type: 3}
     m_TargetAsset: {fileID: 102900000, guid: e46399175a8a2af45a6b6b55fe14b327, type: 3}
+  - m_GUID: 95f55fa05e642fc4ba2bd8bba635e53f
+    m_Address: Level 1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: db9d4d8987555c248891dbbb6da8b1fd
+    m_Address: Level 2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: db9d4d8987555c248891dbbb6da8b1fd, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: db9d4d8987555c248891dbbb6da8b1fd, type: 3}
+  - m_GUID: 73f174881b120cb48845cf3fbe3e6e2c
+    m_Address: Level 3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 102900000, guid: 73f174881b120cb48845cf3fbe3e6e2c, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 73f174881b120cb48845cf3fbe3e6e2c, type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: cb791ac392b8bda49a3c53013af2921e, type: 2}
   m_SchemaSet:
