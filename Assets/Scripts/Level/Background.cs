@@ -12,10 +12,10 @@ public class Background : MonoBehaviour
         {
             if(!backgrounds[i].isVisible)
             {
-                Vector2 directionToCamera = backgrounds[i].transform.position - Camera.main.transform.position;
+                Vector2 directionToCamera = Camera.main.transform.position - backgrounds[i].transform.position;
                 int horizontalDir = (int)Mathf.Sign(directionToCamera.x);
                 backgrounds[i].transform.position = 
-                    new Vector2(backgrounds[i].transform.position.x + width * 2 * horizontalDir, backgrounds[i].transform.position.y);
+                    new Vector2(backgrounds[i].transform.position.x + width /16 * 3 * horizontalDir, Camera.main.transform.position.y);
             }
         }
     }

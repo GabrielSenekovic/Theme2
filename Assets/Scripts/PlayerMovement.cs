@@ -227,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
             breakVFX.Play();
             renderer.color = Color.clear;
             dead = true;
-            UIManager.LoadScene();
+            UIManager.Instance.LoadScene();
         }
     }
 }

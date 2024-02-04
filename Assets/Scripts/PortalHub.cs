@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PortalHub : MonoBehaviour
 {
-    public List<portalData> portals = new List<portalData>();
+    public List<PortalData> portals = new List<PortalData>();
     // Start is called before the first frame update
 
     public void AddPortal(int id, GameObject obj, Portal port)
     {
-        portalData item = new portalData(id, obj, port);
+        PortalData item = new PortalData(id, obj, port);
         portals.Add(item);
     }
 
@@ -30,21 +30,15 @@ public class PortalHub : MonoBehaviour
 
         return false;
     }
-    void Start()
+    public void Reset()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        portals.Clear();
     }
 }
 
-public struct portalData
+public struct PortalData
 {
-    public portalData(int id, GameObject obj, Portal portalscript)
+    public PortalData(int id, GameObject obj, Portal portalscript)
     {
         this.ID = id;
         this.Portal = obj;

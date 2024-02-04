@@ -13,7 +13,7 @@ public class Portal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hub = UIManager.Instance.portalHub.GetComponent<PortalHub>();
+        hub = UIManager.Instance.portalHub;
     }
 
     int ConvertTileNumberToInt()
@@ -30,9 +30,9 @@ public class Portal : MonoBehaviour
     {
         int id = ConvertTileNumberToInt();
 
-        if(!hub.ConnectPortal(id, gameObject, GetComponent<Portal>()))
+        if(!hub.ConnectPortal(id, gameObject, this))
         {
-            hub.AddPortal(id, gameObject, GetComponent<Portal>());
+            hub.AddPortal(id, gameObject, this);
             return false;
         }
         return true;

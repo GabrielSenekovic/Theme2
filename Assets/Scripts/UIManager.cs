@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject player;
 
-    public GameObject portalHub;
+    public PortalHub portalHub;
 
     public static UIManager Instance
     {
@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
         this.tileMaps.Clear();
         this.tileMaps = tileMaps;
     }
-    public Tilemap GetTileMap(TilemapFunction func) => tileMaps.First(t => t.func == func).map;
+    public Tilemap GetTileMap(TilemapFunction func) => tileMaps.FirstOrDefault(t => t.func == func)?.map;
     public static void ChangeLives(int value)
     {
         instance.lives_counter += value;
@@ -77,9 +77,10 @@ public class UIManager : MonoBehaviour
         instance.coins.text = instance.coins_counter.ToString();
     }
 
-    public static void LoadScene()
+    public void LoadScene()
     {
         AudioManager.PlaySound(instance.death);
+        portalHub.Reset();
         instance.StartCoroutine(LoadSceneAsync());
     }
 
