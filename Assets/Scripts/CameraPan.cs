@@ -75,28 +75,34 @@ public class CameraPan : MonoBehaviour
         if(CheckVerticalWall(rightRayHit) && rightRayHit != (Vector2)player.transform.position)
         {
             distRightRay = ((Vector2)player.transform.position - rightRayHit).magnitude;
+            Debug.Log("right ray R:" + distRightRay + " L: " + distLeftRay);
         }
-        else if (CheckVerticalWall(leftRayHit) && leftRayHit != (Vector2)player.transform.position)
+        if (CheckVerticalWall(leftRayHit) && leftRayHit != (Vector2)player.transform.position)
         {
             distLeftRay = ((Vector2)player.transform.position - leftRayHit).magnitude;
+            Debug.Log("left ray R:" + distRightRay + " L: " + distLeftRay);
         }
 
         if (distRightRay > distLeftRay && (distLeftRay * distRightRay != 0))
         {
-            transform.position = player.transform.position + new Vector3(Camera.main.orthographicSize * Camera.main.aspect, 0);
+            transform.position = player.transform.position + new Vector3((distRightRay - Camera.main.orthographicSize * Camera.main.aspect) - 0.5f, Camera.main.orthographicSize);
+            Debug.Log("right longer");
         }
         else if (distRightRay < distLeftRay && (distLeftRay * distRightRay != 0))
         {
-            transform.position = player.transform.position - new Vector3(Camera.main.orthographicSize * Camera.main.aspect, 0);
+            transform.position = player.transform.position - new Vector3((distLeftRay - Camera.main.orthographicSize * Camera.main.aspect) + 0.5f, Camera.main.orthographicSize);
+            Debug.Log("left longer");
         }
         else if (distLeftRay * distRightRay != 0)
         {
-            transform.position = player.transform.position + new Vector3(Camera.main.orthographicSize * Camera.main.aspect, 0);
+            transform.position = player.transform.position + new Vector3(0, Camera.main.orthographicSize);
+            Debug.Log("same dest");
         }
         else
         {
             Vector3 camPos = Camera.main.transform.position;
             Camera.main.transform.position = new Vector3(player.transform.position.x, camPos.y, camPos.z);
+            Debug.Log("error");
         }
 
     }
@@ -104,7 +110,7 @@ public class CameraPan : MonoBehaviour
     private Vector2 CheckForWalls(bool goingRight)
     {
         Vector3 raycastDirection = (goingRight) ? Vector3.right : Vector3.left;
-        RaycastHit2D hit = Physics2D.RaycastAll(player.transform.position - new Vector3(0, 0.0f, 0), raycastDirection, 20) // 20 = camera width in tiles
+        RaycastHit2D hit = Physics2D.RaycastAll(player.transform.position - new Vector3(0, 0.5f, 0), raycastDirection, 20) // 20 = camera width in tiles
           .FirstOrDefault(h => h.transform.CompareTag("Tilemap"));
 
         //Debug.Log("hit: " + (hit.point == null) );
@@ -127,7 +133,7 @@ public class CameraPan : MonoBehaviour
     {
         for (int y = 0; y < 12; y++)
         {
-            Vector3Int checkingPosition = new Vector3Int((int)(pos.x), (int)(pos.y) -1 + y, 0);
+            Vector3Int checkingPosition = new Vector3Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y -1.0f + y), 0);
             objectsMap.SetColor(checkingPosition, Color.red);
             //GameObject g = new GameObject();
             //g.transform.position = checkingPosition;
@@ -135,6 +141,10 @@ public class CameraPan : MonoBehaviour
 
             if (CameraMap.GetTile(checkingPosition) == null)
             {
+                GameObject g = new GameObject();
+                g.transform.position = checkingPosition;
+                g.name = "checkWall";
+                GameObject.Instantiate(g);
                 return false;
             }
         }
