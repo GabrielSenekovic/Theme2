@@ -35,8 +35,8 @@ public class CameraPan : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        objectsMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
-        cameraMap = UIManager.Instance.GetTileMap(TilemapFunction.CAMERA);
+        objectsMap = TilemapManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+        cameraMap = TilemapManager.Instance.GetTileMap(TilemapFunction.CAMERA);
 
         panOffsets = new float[] { 1.0f, 1.0f, 0.0f, 0.0f }; // offset x, y, mid point x, y. 
 

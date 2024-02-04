@@ -30,7 +30,7 @@ public class Door : MonoBehaviour
         { GetComponent<SpriteRenderer>().sprite = unlockedSprite; }
         else 
         {
-            Tilemap tileMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+            Tilemap tileMap = TilemapManager.Instance.GetTileMap(TilemapFunction.OBJECT);
             Vector3Int pos = tileMap.WorldToCell(transform.position);
             tileMap.SetTile(pos, null);
         }

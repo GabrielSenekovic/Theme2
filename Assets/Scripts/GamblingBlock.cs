@@ -16,7 +16,7 @@ public class GamblingBlock : MonoBehaviour
     {
         if (!initialized)
         {
-            Tilemap contentMap = UIManager.Instance.GetTileMap(TilemapFunction.CONTENT);
+            Tilemap contentMap = TilemapManager.Instance.GetTileMap(TilemapFunction.CONTENT);
             Vector3Int pos = contentMap.WorldToCell(transform.position);
             content = contentMap.GetTile(pos);
             contentMap.SetTile(pos, null);
@@ -24,7 +24,7 @@ public class GamblingBlock : MonoBehaviour
         }
         if(spawn)
         {
-            Tilemap tileMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+            Tilemap tileMap = TilemapManager.Instance.GetTileMap(TilemapFunction.OBJECT);
             Vector3Int pos = tileMap.WorldToCell(transform.position);
             tileMap.SetTile(pos, content);
             tileMap.SetColor(pos, Color.clear);

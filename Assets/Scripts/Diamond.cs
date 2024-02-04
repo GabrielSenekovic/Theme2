@@ -13,9 +13,9 @@ public class Diamond : MonoBehaviour
     {
         if(taken)
         {
-            Tilemap tileMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+            Tilemap tileMap = TilemapManager.Instance.GetTileMap(TilemapFunction.OBJECT);
             Vector3Int pos = tileMap.WorldToCell(transform.position);
-            UIManager.ChangeCoins(value);
+            UIManager.Instance.ChangeCoins(value);
             tileMap.SetTile(pos, null);
         }
     }
