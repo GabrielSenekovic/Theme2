@@ -771,7 +771,7 @@ TextureImporter:
       213: -5116942608464083706
     second: OverworldTiles_255
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -788,10 +788,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -830,6 +832,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -841,6 +845,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -853,6 +858,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 128
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -6244,9 +6263,265 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      OverworldTiles_0: 6228961598247755230
+      OverworldTiles_1: -7377241732260371499
+      OverworldTiles_10: -6502029894611429231
+      OverworldTiles_100: 2981875822519367847
+      OverworldTiles_101: 3349061364902795471
+      OverworldTiles_102: -7349608987852127876
+      OverworldTiles_103: 90109282901908993
+      OverworldTiles_104: -8657032568461134786
+      OverworldTiles_105: -3230083739006711493
+      OverworldTiles_106: 5964620330950853830
+      OverworldTiles_107: 39245951416495474
+      OverworldTiles_108: -5084151205974491855
+      OverworldTiles_109: 2640917590069361212
+      OverworldTiles_11: -2696518187894300616
+      OverworldTiles_110: -2113337668719666084
+      OverworldTiles_111: -8467403807483219685
+      OverworldTiles_112: -7668771062828443075
+      OverworldTiles_113: 6009081673524440288
+      OverworldTiles_114: -6665227110182999012
+      OverworldTiles_115: -1157164952680614350
+      OverworldTiles_116: 5896344464836261131
+      OverworldTiles_117: -4054011338748498890
+      OverworldTiles_118: -8939546724701526225
+      OverworldTiles_119: -6966237138764238240
+      OverworldTiles_12: 4960604566768406496
+      OverworldTiles_120: 7983707665319750593
+      OverworldTiles_121: -5646560650578131694
+      OverworldTiles_122: -4700627331693786806
+      OverworldTiles_123: 116426188029040443
+      OverworldTiles_124: 6178583601955313347
+      OverworldTiles_125: 6386606880982979778
+      OverworldTiles_126: 1589939863116280771
+      OverworldTiles_127: -5569404146182290372
+      OverworldTiles_128: 6836995688560168276
+      OverworldTiles_129: -3938530052609098657
+      OverworldTiles_13: 1584122594648900081
+      OverworldTiles_130: 2171058014179893276
+      OverworldTiles_131: -8991162645611881624
+      OverworldTiles_132: 8687673682844382930
+      OverworldTiles_133: 3535839609928306167
+      OverworldTiles_134: -8085403592826174520
+      OverworldTiles_135: -6599610268186506869
+      OverworldTiles_136: -1575093437786446205
+      OverworldTiles_137: 2311140035936752630
+      OverworldTiles_138: 5585667652404464909
+      OverworldTiles_139: -62011160937580934
+      OverworldTiles_14: 1655303271051669146
+      OverworldTiles_140: -1816914590920104789
+      OverworldTiles_141: -2585789775770050829
+      OverworldTiles_142: -2859673231293584210
+      OverworldTiles_143: -9001607808561631353
+      OverworldTiles_144: -3931520302036857836
+      OverworldTiles_145: -9086337055608127311
+      OverworldTiles_146: 1403998692588366868
+      OverworldTiles_147: 79017929543742670
+      OverworldTiles_148: 4547053840196284593
+      OverworldTiles_149: -9037223083210998315
+      OverworldTiles_15: 3905737749484024927
+      OverworldTiles_150: -7646479918375069210
+      OverworldTiles_151: 7249414407576526379
+      OverworldTiles_152: -3090144596865807
+      OverworldTiles_153: -3332555821867352928
+      OverworldTiles_154: -8447944675090777357
+      OverworldTiles_155: 8926366377634699990
+      OverworldTiles_156: -8959729512162512442
+      OverworldTiles_157: 6733330875274167983
+      OverworldTiles_158: 2888499514969270996
+      OverworldTiles_159: 1130966496756612175
+      OverworldTiles_16: -2784956747978209322
+      OverworldTiles_160: -6550079619088246034
+      OverworldTiles_161: -3844722185212355982
+      OverworldTiles_162: -6009819640592398672
+      OverworldTiles_163: -1576380832317602551
+      OverworldTiles_164: 4732683027951231161
+      OverworldTiles_165: -3441406192436011811
+      OverworldTiles_166: -7065835607092782414
+      OverworldTiles_167: 5670883894627289220
+      OverworldTiles_168: -248661864927566933
+      OverworldTiles_169: -3007127423592874869
+      OverworldTiles_17: -8751586372124731031
+      OverworldTiles_170: -3100165393763581014
+      OverworldTiles_171: 307937935290788863
+      OverworldTiles_172: -6624044771032799891
+      OverworldTiles_173: -4156509616686310871
+      OverworldTiles_174: 8389864531253836695
+      OverworldTiles_175: 1418146726668869883
+      OverworldTiles_176: -5837888395483192999
+      OverworldTiles_177: 9077131676122369496
+      OverworldTiles_178: 8165322783676228131
+      OverworldTiles_179: -6237623226012896201
+      OverworldTiles_18: 22307708606828004
+      OverworldTiles_180: 2814452417305394556
+      OverworldTiles_181: 8582066788404488855
+      OverworldTiles_182: 6966256171600649847
+      OverworldTiles_183: -2765693356215415543
+      OverworldTiles_184: -937596681673951667
+      OverworldTiles_185: -6695689110350133984
+      OverworldTiles_186: -8653408693872101335
+      OverworldTiles_187: -2820808717164934822
+      OverworldTiles_188: 3475867787012558701
+      OverworldTiles_189: -2400069815967939543
+      OverworldTiles_19: 6862937694543894793
+      OverworldTiles_190: 9116560490477692502
+      OverworldTiles_191: -1762040430618811216
+      OverworldTiles_192: -4587373860810327695
+      OverworldTiles_193: 3546003113475070183
+      OverworldTiles_194: 1777551718779430262
+      OverworldTiles_195: 4331688715652697968
+      OverworldTiles_196: 8623841230780076349
+      OverworldTiles_197: -1408347572735429170
+      OverworldTiles_198: -1542963623729732863
+      OverworldTiles_199: -208664960740630608
+      OverworldTiles_2: -6482453956967507244
+      OverworldTiles_20: 5901670911820790756
+      OverworldTiles_200: -5218757494758822455
+      OverworldTiles_201: 279423220539934488
+      OverworldTiles_202: 5793731180759453854
+      OverworldTiles_203: 3708128917084901082
+      OverworldTiles_204: -4126020232087350788
+      OverworldTiles_205: 8189355872270993123
+      OverworldTiles_206: 4692533592866449676
+      OverworldTiles_207: 2859148827409250573
+      OverworldTiles_208: 3999781110381230392
+      OverworldTiles_209: -7188357510672144427
+      OverworldTiles_21: -5531544930651407578
+      OverworldTiles_210: 5713981337050240438
+      OverworldTiles_211: 1089569206577363140
+      OverworldTiles_212: 7079759123531634922
+      OverworldTiles_213: 7203711447358566030
+      OverworldTiles_214: 2180764604923768629
+      OverworldTiles_215: -8611337392576400171
+      OverworldTiles_216: 1727729590791858428
+      OverworldTiles_217: -4027620097461816734
+      OverworldTiles_218: -2482634437603165694
+      OverworldTiles_219: 6494034411927469425
+      OverworldTiles_22: 7192079689425892343
+      OverworldTiles_220: 6262401407661797321
+      OverworldTiles_221: -7864775576023563428
+      OverworldTiles_222: -8177107035621681202
+      OverworldTiles_223: -7832323869571254030
+      OverworldTiles_224: 3294813097704691393
+      OverworldTiles_225: 4027964532122114123
+      OverworldTiles_226: -8256394498255031732
+      OverworldTiles_227: 2724505495179067873
+      OverworldTiles_228: 5737258867146408774
+      OverworldTiles_229: 1172713648920736657
+      OverworldTiles_23: 1604622175344828546
+      OverworldTiles_230: -7355876511189349950
+      OverworldTiles_231: 5056069527718547158
+      OverworldTiles_232: 3144137481877201928
+      OverworldTiles_233: -6737815060667314644
+      OverworldTiles_234: -6175733574931599397
+      OverworldTiles_235: 8078763512362091454
+      OverworldTiles_236: 8091145491131781540
+      OverworldTiles_237: -7418743384961838657
+      OverworldTiles_238: 8637425845937653870
+      OverworldTiles_239: -4224971518368535352
+      OverworldTiles_24: -6242490866187388022
+      OverworldTiles_240: -5778069172605935796
+      OverworldTiles_241: -7959391489786833202
+      OverworldTiles_242: 6153290862798355650
+      OverworldTiles_243: -932739878715854379
+      OverworldTiles_244: 8753030743552581026
+      OverworldTiles_245: -875533166911196252
+      OverworldTiles_246: -2133052941432313607
+      OverworldTiles_247: -9096769529380792937
+      OverworldTiles_248: 6896697402962350993
+      OverworldTiles_249: 2630958623802614348
+      OverworldTiles_25: -2229303675040928047
+      OverworldTiles_250: 5676410355698050909
+      OverworldTiles_251: 2920777371837406987
+      OverworldTiles_252: -8315243747299057876
+      OverworldTiles_253: -8446870073553233506
+      OverworldTiles_254: -2499996368841070487
+      OverworldTiles_255: -5116942608464083706
+      OverworldTiles_26: 5080787133362962987
+      OverworldTiles_27: 1928855263599295938
+      OverworldTiles_28: 5598279203645186950
+      OverworldTiles_29: 2252358091158812436
+      OverworldTiles_3: 5923828835446332011
+      OverworldTiles_30: 7190473237585196521
+      OverworldTiles_31: -1021769712222214754
+      OverworldTiles_32: -2605439811623906513
+      OverworldTiles_33: -8604481325235932706
+      OverworldTiles_34: 6190552010078649068
+      OverworldTiles_35: -237924006821693538
+      OverworldTiles_36: 7015469036795566307
+      OverworldTiles_37: -4391412879690257032
+      OverworldTiles_38: -899478579204858107
+      OverworldTiles_39: -8705085515858398958
+      OverworldTiles_4: 7875850264390052892
+      OverworldTiles_40: -4657704287979132173
+      OverworldTiles_41: 5651279113754828405
+      OverworldTiles_42: -627879449607942464
+      OverworldTiles_43: -5358682669906020135
+      OverworldTiles_44: 7046155004679152083
+      OverworldTiles_45: -7266672520809283792
+      OverworldTiles_46: -938100905425399822
+      OverworldTiles_47: -1556459186631683181
+      OverworldTiles_48: -7505327473308446422
+      OverworldTiles_49: 4350435681373846493
+      OverworldTiles_5: -4667121725257154358
+      OverworldTiles_50: 1944670181632499653
+      OverworldTiles_51: -5384763565866213273
+      OverworldTiles_52: -1139601426038468136
+      OverworldTiles_53: -8565247098409715303
+      OverworldTiles_54: 6885557343239809576
+      OverworldTiles_55: 4564918407342855941
+      OverworldTiles_56: -1406169261960588231
+      OverworldTiles_57: -5687583822431816331
+      OverworldTiles_58: 6813717212593765873
+      OverworldTiles_59: 8832584660736269376
+      OverworldTiles_6: -7101024994632880395
+      OverworldTiles_60: 7106417668172997431
+      OverworldTiles_61: -1618502800146959297
+      OverworldTiles_62: -4195305063060505232
+      OverworldTiles_63: -631635712071200172
+      OverworldTiles_64: 5799321340498470381
+      OverworldTiles_65: -8684669433868823596
+      OverworldTiles_66: 7574420804634990821
+      OverworldTiles_67: -6872174218807706601
+      OverworldTiles_68: 8100661013077569365
+      OverworldTiles_69: -2377303920559708542
+      OverworldTiles_7: -5636537258772652155
+      OverworldTiles_70: -2425392941883329062
+      OverworldTiles_71: -704826626464085240
+      OverworldTiles_72: -7685311765824577640
+      OverworldTiles_73: 6947056189867495121
+      OverworldTiles_74: 1195010777892476961
+      OverworldTiles_75: 2934976262867047852
+      OverworldTiles_76: -501759265412711229
+      OverworldTiles_77: 1646670823629189683
+      OverworldTiles_78: 7709957302193639450
+      OverworldTiles_79: -4116970965687689978
+      OverworldTiles_8: 4094822030482583866
+      OverworldTiles_80: -5911107085473140881
+      OverworldTiles_81: -2743727703968964222
+      OverworldTiles_82: -7818056928364350834
+      OverworldTiles_83: 6811140879601221357
+      OverworldTiles_84: -5116649342292884793
+      OverworldTiles_85: -1304650042116515161
+      OverworldTiles_86: 3802525230221438187
+      OverworldTiles_87: -7501126181440575776
+      OverworldTiles_88: -4567390098164592897
+      OverworldTiles_89: 1511258205115712811
+      OverworldTiles_9: -4713831583765293068
+      OverworldTiles_90: -1932085353497172855
+      OverworldTiles_91: -3557989286576977362
+      OverworldTiles_92: -8633723319197607048
+      OverworldTiles_93: 5940927540147606021
+      OverworldTiles_94: -1944977100212666210
+      OverworldTiles_95: -1013123340914564702
+      OverworldTiles_96: -5880830901072333829
+      OverworldTiles_97: 4089937512516300494
+      OverworldTiles_98: -7342209077284212006
+      OverworldTiles_99: -9042209257874349833
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
