@@ -21,7 +21,7 @@ public class Hidden : MonoBehaviour
     {
         if (!initialized)
         {
-            Tilemap contentMap = UIManager.Instance.GetTileMap(TilemapFunction.CONTENT);
+            Tilemap contentMap = TilemapManager.Instance.GetTileMap(TilemapFunction.CONTENT);
             Vector3Int pos = contentMap.WorldToCell(transform.position);
             RuleTile content = contentMap.GetTile(pos) as RuleTile;
             contentMap.SetTile(pos, null);
@@ -30,7 +30,7 @@ public class Hidden : MonoBehaviour
             { contents = content.m_DefaultGameObject; }
 
 
-            UIManager.Instance.GetTileMap(TilemapFunction.OBJECT).SetColor(pos, Color.clear);
+            TilemapManager.Instance.GetTileMap(TilemapFunction.OBJECT).SetColor(pos, Color.clear);
             initialized = true;
         }
     }

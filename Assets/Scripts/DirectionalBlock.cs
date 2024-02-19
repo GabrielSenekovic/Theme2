@@ -45,8 +45,8 @@ public class DirectionalBlock : MonoBehaviour
 
     bool GetModifierValue(Vector3Int pos, out ModifierTile.ModifierValue val)
     {
-        ModifierTile tile = UIManager.Instance.GetTileMap(TilemapFunction.MODIFIER).GetTile(pos + Vector3Int.down) as ModifierTile;
-        UIManager.Instance.GetTileMap(TilemapFunction.MODIFIER).SetColor(pos + Vector3Int.down, Color.clear);
+        ModifierTile tile = TilemapManager.Instance.GetTileMap(TilemapFunction.MODIFIER).GetTile(pos + Vector3Int.down) as ModifierTile;
+        TilemapManager.Instance.GetTileMap(TilemapFunction.MODIFIER).SetColor(pos + Vector3Int.down, Color.clear);
         if (tile)
         {
             val = tile.value;
@@ -60,7 +60,7 @@ public class DirectionalBlock : MonoBehaviour
     {
         if(!initialized)
         {
-            Tilemap contentMap = UIManager.Instance.GetTileMap(TilemapFunction.CONTENT);
+            Tilemap contentMap = TilemapManager.Instance.GetTileMap(TilemapFunction.CONTENT);
             Vector3Int pos = contentMap.WorldToCell(transform.position);
             contentMap.SetColor(pos, Color.clear);
             initialized = true;
@@ -107,7 +107,7 @@ public class DirectionalBlock : MonoBehaviour
             )
         {
             activated = true;
-            Tilemap tileMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+            Tilemap tileMap = TilemapManager.Instance.GetTileMap(TilemapFunction.OBJECT);
             Vector3Int pos = tileMap.WorldToCell(transform.position);
             tileMap.SetColor(pos, Color.clear);
         }

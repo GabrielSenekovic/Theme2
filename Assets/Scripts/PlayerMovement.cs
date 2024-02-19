@@ -61,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Transform visualsTransform;
 
+    public AudioClip death;
+
     void Start ()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -227,7 +229,9 @@ public class PlayerMovement : MonoBehaviour
             breakVFX.Play();
             renderer.color = Color.clear;
             dead = true;
-            UIManager.Instance.LoadScene();
+            AudioManager.PlaySound(death);
+            UIManager.Instance.Reset();
+            SceneLoader.Instance.Reload();
         }
     }
 }

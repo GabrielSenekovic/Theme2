@@ -18,7 +18,7 @@ public class Present : MonoBehaviour
     {
         if(!initialized)
         {
-            Tilemap map = UIManager.Instance.GetTileMap(TilemapFunction.CONTENT);
+            Tilemap map = TilemapManager.Instance.GetTileMap(TilemapFunction.CONTENT);
             Vector3Int pos = map.WorldToCell(transform.position);
             content = map.GetTile(pos);
             map.SetTile(pos, null);
@@ -42,8 +42,8 @@ public class Present : MonoBehaviour
                 else if(index == numbers.Length)
                 {
                     count = false;
-                    Tilemap contentMap = UIManager.Instance.GetTileMap(TilemapFunction.CONTENT);
-                    Tilemap tileMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+                    Tilemap contentMap = TilemapManager.Instance.GetTileMap(TilemapFunction.CONTENT);
+                    Tilemap tileMap = TilemapManager.Instance.GetTileMap(TilemapFunction.OBJECT);
                     Vector3Int pos = contentMap.WorldToCell(transform.position);
                     tileMap.SetTile(new Vector3Int(pos.x, pos.y + 1, pos.z), null);
                     tileMap.SetTile(pos, content);

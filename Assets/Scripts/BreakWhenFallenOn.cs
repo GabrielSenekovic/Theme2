@@ -13,7 +13,7 @@ public class BreakWhenFallenOn : MonoBehaviour
     {
         if(broken)
         {
-            Tilemap tileMap = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+            Tilemap tileMap = TilemapManager.Instance.GetTileMap(TilemapFunction.OBJECT);
             Vector3Int pos = tileMap.WorldToCell(transform.position);
             if (tileMap.GetTile(pos + Vector3Int.right) == tileMap.GetTile(pos))
             {

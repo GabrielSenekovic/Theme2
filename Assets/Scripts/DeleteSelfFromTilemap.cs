@@ -10,7 +10,7 @@ public class DeleteSelfFromTilemap : MonoBehaviour
     {
         if (!initialized)
         {
-            Tilemap map = UIManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+            Tilemap map = TilemapManager.Instance.GetTileMap(TilemapFunction.OBJECT);
             Vector3Int pos = map.WorldToCell(transform.position);
             map.SetColor(pos, Color.clear);
             initialized = true;

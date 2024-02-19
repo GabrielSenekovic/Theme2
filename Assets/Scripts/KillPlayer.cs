@@ -12,7 +12,7 @@ public class KillPlayer : MonoBehaviour
         if (!isOn) return;
         if(collision.gameObject.CompareTag("Player"))
         {
-            UIManager.ChangeLives(-1);
+            UIManager.Instance.ChangeLives(-1);
 
             PlayerMovement playerMovement = null;
 
@@ -36,7 +36,7 @@ public class KillPlayer : MonoBehaviour
         {
             if(other.gameObject.CompareTag("Player"))
             {
-                UIManager.ChangeLives(-1);
+                UIManager.Instance.ChangeLives(-1);
 
                 PlayerMovement playerMovement = null;
 

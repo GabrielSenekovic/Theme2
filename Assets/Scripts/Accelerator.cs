@@ -33,8 +33,8 @@ public class Accelerator : MonoBehaviour
 
     bool GetModifierValue(Vector3Int pos, out ModifierTile.ModifierValue val)
     {
-        ModifierTile tile = UIManager.Instance.GetTileMap(TilemapFunction.MODIFIER).GetTile(pos + Vector3Int.down) as ModifierTile;
-        UIManager.Instance.GetTileMap(TilemapFunction.MODIFIER).SetColor(pos + Vector3Int.down, Color.clear);
+        ModifierTile tile = TilemapManager.Instance.GetTileMap(TilemapFunction.MODIFIER).GetTile(pos + Vector3Int.down) as ModifierTile;
+        TilemapManager.Instance.GetTileMap(TilemapFunction.MODIFIER).SetColor(pos + Vector3Int.down, Color.clear);
         if (tile)
         {
             val = tile.value;

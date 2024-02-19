@@ -1,24 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using UnityEngine.AddressableAssets;
-using UnityEngine.Tilemaps;
-using System.Linq;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] List<TileMapFunctionData> tileMaps = new List<TileMapFunctionData>();
-
-    Text timer;
     public Text lives;
     public Text coins;
-    int lives_counter;
-    int coins_counter;
-    public AudioClip death;
-
-    static UIManager instance;
 
     public Vector3 checkPos;
 
@@ -26,6 +12,10 @@ public class UIManager : MonoBehaviour
 
     public PortalHub portalHub;
 
+    int lives_counter;
+    int coins_counter;
+
+    static UIManager instance;
     public static UIManager Instance
     {
         get
@@ -55,38 +45,23 @@ public class UIManager : MonoBehaviour
     {
         checkPos = new Vector3(0f,0f,100f);
     }
-    public void SetTilemaps(List<TileMapFunctionData> tileMaps)
+    public void ChangeLives(int value)
     {
-        this.tileMaps.Clear();
-        this.tileMaps = tileMaps;
+        lives_counter += value;
+        lives.text = lives_counter.ToString();
     }
-    public Tilemap GetTileMap(TilemapFunction func) => tileMaps.FirstOrDefault(t => t.func == func)?.map;
-    public static void ChangeLives(int value)
+    public void ChangeCoins(int value)
     {
-        instance.lives_counter += value;
-        instance.lives.text = instance.lives_counter.ToString();
-    }
-    public static void ChangeCoins(int value)
-    {
-        instance.coins_counter += value;
-        if(instance.coins_counter >= 100)
+        coins_counter += value;
+        if(coins_counter >= 100)
         {
-            instance.coins_counter = instance.coins_counter - 100;
+            coins_counter = coins_counter - 100;
             ChangeLives(1);
         }
-        instance.coins.text = instance.coins_counter.ToString();
+        coins.text = coins_counter.ToString();
     }
-
-    public void LoadScene()
+    public void Reset()
     {
-        AudioManager.PlaySound(instance.death);
         portalHub.Reset();
-        instance.StartCoroutine(LoadSceneAsync());
-    }
-
-    static IEnumerator LoadSceneAsync()
-    {
-        yield return new WaitForSeconds(1.0f);
-        SceneLoader.Instance?.Reload();
     }
 }

@@ -24,6 +24,6 @@ public class GridManager : MonoBehaviour
 
     private void Awake()
     {
-        UIManager.Instance.SetTilemaps(tileMaps);
+        TilemapManager.Instance.SetTilemaps(tileMaps);
     }
 }

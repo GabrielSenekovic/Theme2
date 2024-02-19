@@ -18,7 +18,7 @@ public class Portal : MonoBehaviour
 
     int ConvertTileNumberToInt()
     {
-        Tilemap contentMap = UIManager.Instance.GetTileMap(TilemapFunction.CONTENT);
+        Tilemap contentMap = TilemapManager.Instance.GetTileMap(TilemapFunction.CONTENT);
         Vector3Int pos = contentMap.WorldToCell(transform.position);
         RuleTile content = contentMap.GetTile(pos) as RuleTile;
         int.TryParse(content.name, out int number);
