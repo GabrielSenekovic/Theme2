@@ -17,35 +17,35 @@ public class PlayerMovement : MonoBehaviour
 
     float jumpPressedRemember = 0;
     [SerializeField]
-    float jumpPressedRememberTime = 0.2f;
+    float jumpPressedRememberTime;
 
     float groundedRemember = 0;
     [SerializeField]
-    float groundedRememberTime = 0.25f;
+    float groundedRememberTime;
 
     [SerializeField]
     [Range(0, 1)]
-    float horizontalDampingBasic = 0.5f;
+    float horizontalDampingBasic;
     [SerializeField]
     [Range(0, 1)]
-    float horizontalDampingWhenStopping = 0.5f;
+    float horizontalDampingWhenStopping;
     [SerializeField]
     [Range(0, 1)]
-    float horizontalDampingWhenTurning = 0.5f;
+    float horizontalDampingWhenTurning;
 
     [SerializeField]
     [Range(0, 1)]
-    float verticalDampingBasic = 1f;
+    float verticalDampingBasic;
     [SerializeField]
     [Range(0, 1)]
-    float verticalDampingWhenStopping = 1f;
+    float verticalDampingWhenStopping;
     [SerializeField]
     [Range(0, 1)]
-    float verticalDampingWhenTurning = 1f;
+    float verticalDampingWhenTurning;
 
     [SerializeField]
     [Range(0, 1)]
-    float cutJumpHeight = 0.5f;
+    float cutJumpHeight;
 
     [SerializeField]
     public float speed;
@@ -68,10 +68,6 @@ public class PlayerMovement : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         breakVFX.enabled = false;
-        if(UIManager.Instance.checkPos.z != 100)
-        {
-            transform.position = UIManager.Instance.checkPos;
-        }
 	}
 	
     private void Update() 
