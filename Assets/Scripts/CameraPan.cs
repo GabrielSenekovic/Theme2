@@ -38,6 +38,8 @@ public class CameraPan : MonoBehaviour
         objectsMap = TilemapManager.Instance.GetTileMap(TilemapFunction.OBJECT);
         cameraMap = TilemapManager.Instance.GetTileMap(TilemapFunction.CAMERA);
 
+        Debug.Log(cameraMap);
+
         panOffsets = new float[] { 1.0f, 1.0f, 0.0f, 0.0f }; // offset x, y, mid point x, y. 
 
         Vector3 camPos = Camera.main.transform.position;
@@ -116,7 +118,7 @@ public class CameraPan : MonoBehaviour
 
         //Debug.Log("hit: " + (hit.point == null) );
 
-        if (hit.point != null)
+        if (hit)
         {
             //Debug.Log("collider: " + (hit.collider));
             if (hit.transform.tag == "Tilemap")
