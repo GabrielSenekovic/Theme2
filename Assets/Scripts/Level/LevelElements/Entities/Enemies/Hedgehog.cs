@@ -18,11 +18,10 @@ public class Hedgehog : MonoBehaviour
     public GameObject colliderOB;
     public KillPlayer hostile;
     public CircleCollider2D vision;
-    public float angle = 0;
     private GameObject player;
     private bool enteredGrounded = true;
-    private Vector2 origin;
-    private Vector2 end;
+
+    float angle = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +35,6 @@ public class Hedgehog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.DrawLine(origin, end);
-        //Debug.DrawLine(new Vector2(1,1), transform.position);
         if (!isStanding)
         {
             Vector3 directionTranslation = (goingRight) ? transform.right : -transform.right;
@@ -85,8 +82,13 @@ public class Hedgehog : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            float radius = enteredGrounded ? 80 : 20;
-            if( (angle > 90 - radius && angle < 90 + radius))// || (player.transform.position.x - transform.position.x) > 3 )
+            float radius = enteredGrounded ? 85 : 10;
+            if(enteredGrounded)
+            {
+                angle = (AngleDeg(collision.ClosestPoint(transform.position)) + 360) % 360;
+            }
+            if (angle > 90 - radius && angle < 90 + radius) //if angle falls outside the area
+                                                            //If angle is 160, it checks, if 160 is bigger than 80 and smaller than 100
             {
                 isStanding = false;
                 spriteRenderer.sprite = spriteStates[0];
@@ -98,7 +100,6 @@ public class Hedgehog : MonoBehaviour
                 spriteRenderer.sprite = spriteStates[1];
                 hostile.isOn = false;
             }
-         
         }
     }
 
@@ -110,5 +111,11 @@ public class Hedgehog : MonoBehaviour
             spriteRenderer.sprite = spriteStates[0];
             hostile.isOn = true;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = isStanding ? Color.green : enteredGrounded && !isStanding ? Color.yellow : Color.red;
+        Gizmos.DrawWireSphere(transform.position, vision.radius);
     }
 }
