@@ -17,12 +17,12 @@ public class CameraPan : MonoBehaviour
     public float camSpeed = 0.0f;
     public float[] panOffsets = new float[4];
 
-    Tilemap objectsMap;
+    Tilemap tileMap;
     Tilemap cameraMap;
 
-    public enum WALLS { LEFT, RIGHT, BOTH, NONE };
+    //public enum WALLS { LEFT, RIGHT, BOTH, NONE };
 
-    public WALLS closestWall;
+    //public WALLS closestWall;
 
     Vector2[] dirs = new Vector2[4]
         {
@@ -35,10 +35,10 @@ public class CameraPan : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        objectsMap = TilemapManager.Instance.GetTileMap(TilemapFunction.OBJECT);
+        tileMap = TilemapManager.Instance.GetTileMap(TilemapFunction.TILEMAP);
         cameraMap = TilemapManager.Instance.GetTileMap(TilemapFunction.CAMERA);
 
-        Debug.Log(cameraMap);
+        //Debug.Log(cameraMap);
 
         panOffsets = new float[] { 1.0f, 1.0f, 0.0f, 0.0f }; // offset x, y, mid point x, y. 
 
@@ -57,6 +57,7 @@ public class CameraPan : MonoBehaviour
         if(cameraMap != null)
         {
             CalibratePosition();
+            Debug.Log("calibrate position");
         }
     }
 
@@ -73,8 +74,8 @@ public class CameraPan : MonoBehaviour
         Vector2 rightRayHit = CheckForWalls(true);
         Vector2 leftRayHit = CheckForWalls(false);
 
-        float distLeftRay = 0;
-        float distRightRay = 0;
+        float distLeftRay = 21;
+        float distRightRay = 21;
         if(CheckVerticalWall(rightRayHit) && rightRayHit != (Vector2)player.transform.position)
         {
             distRightRay = ((Vector2)player.transform.position - rightRayHit).magnitude;
@@ -86,26 +87,28 @@ public class CameraPan : MonoBehaviour
             Debug.Log("left ray R:" + distRightRay + " L: " + distLeftRay);
         }
 
-        if (distRightRay > distLeftRay && (distLeftRay * distRightRay != 0))
+        if (distLeftRay < distRightRay)
         {
-            transform.position = player.transform.position + new Vector3((distRightRay - Camera.main.orthographicSize * Camera.main.aspect) - 0.5f, Camera.main.orthographicSize);
+            transform.position = player.transform.position + new Vector3((Camera.main.orthographicSize * Camera.main.aspect -distLeftRay) +2, 0);
+            transform.position += new Vector3(0, Camera.main.aspect + 2);
             Debug.Log("right longer");
         }
-        else if (distRightRay < distLeftRay && (distLeftRay * distRightRay != 0))
+        else if (distRightRay < distLeftRay)
         {
-            transform.position = player.transform.position - new Vector3((distLeftRay - Camera.main.orthographicSize * Camera.main.aspect) + 0.5f, Camera.main.orthographicSize);
+            transform.position = player.transform.position - new Vector3((Camera.main.orthographicSize * Camera.main.aspect - distRightRay),0);
+            transform.position += new Vector3(0,Camera.main.aspect + 2);
             Debug.Log("left longer");
         }
-        else if (distLeftRay * distRightRay != 0)
+        else if (distLeftRay == 21 && distRightRay == 21)
         {
             transform.position = player.transform.position + new Vector3(0, Camera.main.orthographicSize);
             Debug.Log("same dest");
         }
         else
         {
-            Vector3 camPos = Camera.main.transform.position;
-            Camera.main.transform.position = new Vector3(player.transform.position.x, camPos.y, camPos.z);
-            Debug.Log("error");
+            //Vector3 camPos = Camera.main.transform.position;
+            //Camera.main.transform.position = new Vector3(player.transform.position.x, camPos.y, camPos.z);
+            Debug.Log("error L " + distLeftRay + " R " + distRightRay + " " +  (rightRayHit == (Vector2)player.transform.position) + " " + (leftRayHit == (Vector2)player.transform.position) );
         }
 
     }
@@ -113,17 +116,18 @@ public class CameraPan : MonoBehaviour
     private Vector2 CheckForWalls(bool goingRight)
     {
         Vector3 raycastDirection = (goingRight) ? Vector3.right : Vector3.left;
+        Debug.Log("rcd: " + raycastDirection);
         RaycastHit2D hit = Physics2D.RaycastAll(player.transform.position - new Vector3(0, 0.5f, 0), raycastDirection, 20) // 20 = camera width in tiles
-          .FirstOrDefault(h => h.transform.CompareTag("Tilemap"));
+          .FirstOrDefault(h => h.transform.CompareTag("Cameramap"));
 
-        //Debug.Log("hit: " + (hit.point == null) );
+        Debug.Log("cfw hit: " + (hit == false) );
 
         if (hit)
         {
-            //Debug.Log("collider: " + (hit.collider));
-            if (hit.transform.tag == "Tilemap")
+            Debug.Log("collider: " + (hit.collider.name));
+            if (hit.transform.tag == "Cameramap")
             {
-                Debug.Log("tilemap hit: " + hit.point);
+                Debug.Log("tag hit: " + hit.point);
                 Vector2 output = (goingRight) ? hit.point : new Vector2(hit.point.x - 1.0f, hit.point.y);
                 return output;
             }
@@ -137,17 +141,17 @@ public class CameraPan : MonoBehaviour
         for (int y = 0; y < 12; y++)
         {
             Vector3Int checkingPosition = new Vector3Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y -1.0f + y), 0);
-            objectsMap.SetColor(checkingPosition, Color.red);
+            //objectsMap.SetColor(checkingPosition, Color.red);
             //GameObject g = new GameObject();
             //g.transform.position = checkingPosition;
             //GameObject.Instantiate(g);
 
             if (cameraMap.GetTile(checkingPosition) == null)
             {
-                GameObject g = new GameObject();
-                g.transform.position = checkingPosition;
-                g.name = "checkWall";
-                GameObject.Instantiate(g);
+                //GameObject g = new GameObject();
+                //g.transform.position = checkingPosition;
+                //g.name = "checkWall";
+                //GameObject.Instantiate(g);
                 return false;
             }
         }
@@ -211,13 +215,16 @@ public class CameraPan : MonoBehaviour
 
     private void LateUpdate()                                
     {
-        if(cameraMap != null)
+        if (cameraMap != null)
         {
             CheckForSolidTileWallsOnCameraEdge();
             DrawDebugLines();
-            MoveCamera();
+            //MoveCamera();
         }
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+        else
+        {
+            transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+        }
     }
     void DrawDebugLines()
     {
