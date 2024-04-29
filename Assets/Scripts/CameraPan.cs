@@ -219,7 +219,7 @@ public class CameraPan : MonoBehaviour
         {
             CheckForSolidTileWallsOnCameraEdge();
             DrawDebugLines();
-            //MoveCamera();
+            MoveCamera();
         }
         else
         {
