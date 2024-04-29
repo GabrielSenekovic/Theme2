@@ -7,6 +7,7 @@ public class EnemyGoonMove : MonoBehaviour
 {
     [SerializeField] float movementSpeed;
     [SerializeField] float raycastingDistance = 0.5f;
+    [SerializeField] bool fallOffLedge;
 
     bool goingRight;
     private SpriteRenderer spriteRenderer;
@@ -20,12 +21,16 @@ public class EnemyGoonMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            Vector3 directionTranslation = (goingRight) ? transform.right : -transform.right;
-            directionTranslation *= Time.deltaTime * movementSpeed;
+        Vector3 directionTranslation = (goingRight) ? transform.right : -transform.right;
+        directionTranslation *= Time.deltaTime * movementSpeed;
 
-            transform.Translate(directionTranslation);
+        transform.Translate(directionTranslation);
 
-            CheckForWalls();
+        CheckForWalls();
+        if(!fallOffLedge)
+        {
+            CheckForLedge();
+        }
     }
 
     private void CheckForWalls()
@@ -34,15 +39,27 @@ public class EnemyGoonMove : MonoBehaviour
         RaycastHit2D hit = Physics2D.RaycastAll(transform.position - new Vector3(0, 0.07f, 0), raycastDirection, raycastingDistance)
             .FirstOrDefault(h => h.transform.CompareTag("Tilemap"));
 
-
-        if (hit.collider != null)
+        if (hit.collider != null && hit.transform.tag == "Tilemap")
         {
-            if (hit.transform.tag == "Tilemap")
-            {
-                goingRight = !goingRight;
-                spriteRenderer.flipX = goingRight;
-
-            }
+            TurnAround();
         }
+    }
+    private void CheckForLedge()
+    {
+        Vector3 raycastDirection = (goingRight) ? Vector3.right : Vector3.left;
+        RaycastHit2D hit = Physics2D.RaycastAll(transform.position - new Vector3(0, 1.07f, 0), raycastDirection, raycastingDistance)
+            .FirstOrDefault(h => h.transform.CompareTag("Tilemap"));
+
+        Debug.DrawLine(transform.position - new Vector3(0, 1.07f, 0), transform.position - new Vector3(0, 1.07f, 0) + raycastDirection * raycastingDistance);
+
+        if (hit.collider == null || (hit.collider != null && (hit.transform.tag != "Tilemap"))) 
+        {
+            TurnAround();
+        }
+    }
+    void TurnAround()
+    {
+        goingRight = !goingRight;
+        spriteRenderer.flipX = goingRight;
     }
 }
