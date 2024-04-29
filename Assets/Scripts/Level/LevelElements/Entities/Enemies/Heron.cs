@@ -10,7 +10,7 @@ public class Heron : MonoBehaviour
     [SerializeField] Rigidbody2D headBody;
     [SerializeField] SpringJoint2D springJoint;
 
-    float maximumDistanceBetweenSegments = 0.8f;
+    float maximumDistanceBetweenSegments = 0.7f;
     [SerializeField] float headSwoopSpeed;
 
     GameObject player;

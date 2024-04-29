@@ -17,17 +17,27 @@ public class Trampoline : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D other) 
     {
-        if(other.gameObject.GetComponent<Rigidbody2D>() && other.gameObject.transform.position.y > transform.position.y + 0.75f) 
+        StartBounce(other.gameObject);
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        StartBounce(collision.gameObject);
+    }
+
+    private void StartBounce( GameObject bouncer)
+    {
+        if (bouncer.GetComponent<Rigidbody2D>() && bouncer.transform.position.y > transform.position.y + 0.75f)
         {
-            
+
             bounce = true;
             //Debug.Log(bounce);
             GetComponent<AudioSource>().Play();
-            rb = other.gameObject.GetComponent<Rigidbody2D>();
+            rb = bouncer.GetComponent<Rigidbody2D>();
 
         }
     }
- 
+
     void Update () 
     {
         if(bounce) 
