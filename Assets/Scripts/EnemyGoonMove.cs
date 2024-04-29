@@ -5,10 +5,11 @@ using System.Linq;
 
 public class EnemyGoonMove : MonoBehaviour
 {
-    public bool goingRight;
     public float movementSpeed;
-    private SpriteRenderer spriteRenderer;
     public float raycastingDistance = 0.5f;
+
+    bool goingRight;
+    private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
