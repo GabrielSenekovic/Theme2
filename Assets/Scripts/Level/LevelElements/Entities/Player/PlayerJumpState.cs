@@ -40,6 +40,24 @@ public class PlayerJumpState : IState
                 blackboard.body.velocity = new Vector2(blackboard.body.velocity.x, blackboard.body.velocity.y * blackboard.cutJumpHeight);
             }
         }
+        float horizontalVelocity = blackboard.body.velocity.x;
+        float rawHorizontal = Input.GetAxisRaw("Horizontal");
+        if (rawHorizontal < 0) { blackboard.visualsTrans.localScale = new Vector3(-1, 1, 1); }
+        if (rawHorizontal > 0) { blackboard.visualsTrans.localScale = new Vector3(1, 1, 1); }
+        horizontalVelocity += rawHorizontal * blackboard.speed;
+        if (Mathf.Abs(rawHorizontal) < 0.01f)
+        {
+            horizontalVelocity *= Mathf.Pow(1f - blackboard.horizontalDampingWhenStopping, Time.deltaTime * 10f);
+        }
+        else if (Mathf.Sign(rawHorizontal) != Mathf.Sign(horizontalVelocity))
+        {
+            horizontalVelocity *= Mathf.Pow(1f - blackboard.horizontalDampingWhenTurning, Time.deltaTime * 10f);
+        }
+        else
+        {
+            horizontalVelocity *= Mathf.Pow(1f - blackboard.horizontalDampingBasic, Time.deltaTime * 10f);
+        }
+        blackboard.body.velocity = new Vector2(horizontalVelocity, blackboard.body.velocity.y);
         return 0;
     }
 }

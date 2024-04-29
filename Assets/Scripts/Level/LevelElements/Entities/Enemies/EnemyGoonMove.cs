@@ -5,8 +5,8 @@ using System.Linq;
 
 public class EnemyGoonMove : MonoBehaviour
 {
-    public float movementSpeed;
-    public float raycastingDistance = 0.5f;
+    [SerializeField] float movementSpeed;
+    [SerializeField] float raycastingDistance = 0.5f;
 
     bool goingRight;
     private SpriteRenderer spriteRenderer;

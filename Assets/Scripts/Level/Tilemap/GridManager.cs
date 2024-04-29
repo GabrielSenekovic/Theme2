@@ -22,7 +22,7 @@ public class GridManager : MonoBehaviour
 {
     public List<TileMapFunctionData> tileMaps = new List<TileMapFunctionData>();
 
-    private void Start()
+    private void Awake()
     {
         TilemapManager.Instance.SetTilemaps(tileMaps);
     }
