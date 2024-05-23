@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class EnemyGoonMove : MonoBehaviour
 {
@@ -36,21 +37,29 @@ public class EnemyGoonMove : MonoBehaviour
     private void CheckForWalls()
     {
         Vector3 raycastDirection = (goingRight) ? Vector3.right : Vector3.left;
-        RaycastHit2D hit = Physics2D.RaycastAll(transform.position - new Vector3(0, 0.07f, 0), raycastDirection, raycastingDistance)
-            .FirstOrDefault(h => h.transform.CompareTag("Tilemap"));
+        var hit = Physics2D.RaycastAll(transform.position - new Vector3(0, 0.07f, 0), raycastDirection, raycastingDistance);
 
-        if (hit.collider != null && hit.transform.tag == "Tilemap")
+        bool turnAround = hit.Any(h => h.transform.CompareTag("Tilemap") || 
+        (h.collider.gameObject != gameObject && h.collider.gameObject.GetComponent<Rigidbody2D>()));
+
+        if (!turnAround) { return; }
+            
+        foreach (var item in hit)
         {
-            TurnAround();
+            if(item.collider.gameObject.TryGetComponent(out EnemyGoonMove move))
+            {
+                move.TurnAround();
+            }
         }
     }
     private void CheckForLedge()
     {
-        Vector3 raycastDirection = (goingRight) ? Vector3.right : Vector3.left;
-        RaycastHit2D hit = Physics2D.RaycastAll(transform.position - new Vector3(0, 1.07f, 0), raycastDirection, raycastingDistance)
+        Vector2 raycastDirection = goingRight ? Vector2.right : Vector2.left;
+        Vector2 origin = transform.position - new Vector3(0.5f * -raycastDirection.x, 1.07f, 0);
+        RaycastHit2D hit = Physics2D.RaycastAll(origin, raycastDirection, raycastingDistance)
             .FirstOrDefault(h => h.transform.CompareTag("Tilemap"));
 
-        Debug.DrawLine(transform.position - new Vector3(0, 1.07f, 0), transform.position - new Vector3(0, 1.07f, 0) + raycastDirection * raycastingDistance);
+        Debug.DrawLine(origin, origin + raycastDirection * raycastingDistance);
 
         if (hit.collider == null || (hit.collider != null && (hit.transform.tag != "Tilemap"))) 
         {
