@@ -6,7 +6,7 @@ public class Despawn : MonoBehaviour
 {
     // Start is called before the first frame update
         private Renderer rend;
-        private int timer;
+        private int timer = 0;
         public bool BreakOnImpact;
         private int timer_max = 30 * 60;
     void Start()
@@ -23,6 +23,7 @@ public class Despawn : MonoBehaviour
             if(timer > timer_max)
             Destroy(gameObject);
         }
+        else { timer = 0; }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
