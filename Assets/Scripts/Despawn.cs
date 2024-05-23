@@ -8,6 +8,7 @@ public class Despawn : MonoBehaviour
         private Renderer rend;
         private int timer;
         public bool BreakOnImpact;
+        private int timer_max = 30 * 60;
     void Start()
     {
         rend = GetComponent<Renderer>();
@@ -19,7 +20,7 @@ public class Despawn : MonoBehaviour
         if(!rend.isVisible)
         {
             timer++;
-            if(timer > 30)
+            if(timer > timer_max)
             Destroy(gameObject);
         }
     }
