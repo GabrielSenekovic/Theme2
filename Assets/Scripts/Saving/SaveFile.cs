@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
-
+[System.Serializable]
 public class SaveFile 
 {
     public Dictionary<string, int> integers = new Dictionary<string, int>();
