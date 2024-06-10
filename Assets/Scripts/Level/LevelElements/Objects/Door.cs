@@ -5,10 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class Door : MonoBehaviour
 {
-    public GameObject Key;
-    public Transform DestinatorDoor;
+    public Transform destinatorDoor;
 
-    public GameObject Player;
+    public GameObject player;
     public bool locked;
 
     public Sprite lockedSprite;
@@ -27,7 +26,9 @@ public class Door : MonoBehaviour
         locked = false;
         Destroy(key);
         if (!block)
-        { GetComponent<SpriteRenderer>().sprite = unlockedSprite; }
+        { 
+            GetComponent<SpriteRenderer>().sprite = unlockedSprite; 
+        }
         else 
         {
             Tilemap tileMap = TilemapManager.Instance.GetTileMap(TilemapFunction.OBJECT);
@@ -38,7 +39,9 @@ public class Door : MonoBehaviour
 
     public void Open() 
     {
-        if( (!locked && Player.transform.position.y  < transform.position.y - 0.2) && !block)
-        Player.transform.position = DestinatorDoor.transform.position;
+        if( (!locked && player.transform.position.y  < transform.position.y - 0.2) && !block)
+        {
+            player.transform.position = destinatorDoor.transform.position;
+        }
     }
 }
