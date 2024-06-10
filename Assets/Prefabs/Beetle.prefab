@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8467855272874959786}
   - component: {fileID: 4818546927358280523}
   - component: {fileID: 3212612596722435220}
+  - component: {fileID: 7196679461966580113}
   m_Layer: 0
   m_Name: Beetle
   m_TagString: Untagged
@@ -179,3 +180,24 @@ MonoBehaviour:
   movementSpeed: 1
   raycastingDistance: 0.5
   fallOffLedge: 1
+--- !u!95 &7196679461966580113
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10584211201315202}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d445e93212d1d7847ba9bbd2a4fd781c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

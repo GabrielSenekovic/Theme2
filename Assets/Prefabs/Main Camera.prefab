@@ -259,7 +259,7 @@ MonoBehaviour:
   directionsOpen: 
   test: {fileID: 11400000, guid: 84a19687fac7bd84da53ee300edc552a, type: 2}
   player: {fileID: 0}
-  camSpeed: 0.25
+  camSpeed: 0.0625
   panOffsets: []
 --- !u!1 &6848729462420380253
 GameObject:

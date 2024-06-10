@@ -5,15 +5,23 @@ using UnityEngine.Tilemaps;
 
 public class Accelerator : MonoBehaviour
 {
-    [SerializeField]
-    bool clockWise;
-    [SerializeField]
-    float speed;
+    [SerializeField] bool clockWise;
+    [SerializeField] float speed;
+    [SerializeField] int maxCounter = 1;
+    [SerializeField] float rotationSpeed;
+
     bool isCoolingDown;
-    int counter = 0;
-    [SerializeField]
-    int maxCounter = 1;
+    [SerializeField] int counter = 0;
     // Start is called before the first frame update
+
+    Vector2 directionOfJettison;
+
+    SpriteRenderer myRenderer;
+
+    private void Awake()
+    {
+        myRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
     void Start()
     {
         Vector3Int pos = new Vector3Int(Mathf.FloorToInt(transform.localPosition.x), Mathf.FloorToInt(transform.localPosition.y), (int)transform.localPosition.z) * 2;
@@ -50,8 +58,10 @@ public class Accelerator : MonoBehaviour
         if(isCoolingDown)
         {
             counter++;
-            if(counter >= maxCounter) { isCoolingDown = false; }
+            if(counter >= maxCounter) { isCoolingDown = false; counter = 0; }
         }
+        int direction = clockWise ? -1 : 1;
+        myRenderer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, myRenderer.transform.rotation.eulerAngles.z + rotationSpeed * direction));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -60,12 +70,18 @@ public class Accelerator : MonoBehaviour
         {
             if (isCoolingDown) { return; }
             Vector2 CollisionPoint = collision.collider.ClosestPoint(transform.position);
-            Debug.Log("boop");
             Vector2 toCollision = (Vector2)transform.position - CollisionPoint;
             float angle = clockWise ? 90 : -90;
             Vector2 dir = Quaternion.AngleAxis(angle, Vector3.forward) * toCollision;
             rb.velocity += dir.normalized * speed;
             isCoolingDown = true;
+
+            directionOfJettison = dir;
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, (Vector2)transform.position + directionOfJettison * 10);
     }
 }

@@ -134,8 +134,8 @@ TextureImporter:
       name: Beetle_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 16
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -147,6 +147,48 @@ TextureImporter:
       bones: []
       spriteID: 1294928b0bd811e4fb93c480d58cc0a3
       internalID: 1294021715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beetle_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ad3b0c165a7da6438e967ac5392772c
+      internalID: -593583117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beetle_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90b1ee4e0e2048343b00e6ff70f7da87
+      internalID: 1551142333
       vertices: []
       indices: 
       edges: []
@@ -164,6 +206,8 @@ TextureImporter:
     nameFileIdTable:
       Beetle_0: -1541484407
       Beetle_1: 1294021715
+      Beetle_2: -593583117
+      Beetle_3: 1551142333
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

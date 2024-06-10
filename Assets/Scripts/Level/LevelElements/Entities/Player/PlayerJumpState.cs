@@ -45,6 +45,8 @@ public class PlayerJumpState : IState
         if (rawHorizontal < 0) { blackboard.visualsTrans.localScale = new Vector3(-1, 1, 1); }
         if (rawHorizontal > 0) { blackboard.visualsTrans.localScale = new Vector3(1, 1, 1); }
         horizontalVelocity += rawHorizontal * blackboard.speed;
+        
+
         if (Mathf.Abs(rawHorizontal) < 0.01f)
         {
             horizontalVelocity *= Mathf.Pow(1f - blackboard.horizontalDampingWhenStopping, Time.deltaTime * 10f);
@@ -57,7 +59,18 @@ public class PlayerJumpState : IState
         {
             horizontalVelocity *= Mathf.Pow(1f - blackboard.horizontalDampingBasic, Time.deltaTime * 10f);
         }
-        blackboard.body.velocity = new Vector2(horizontalVelocity, blackboard.body.velocity.y);
+
+        int signBody = Mathf.RoundToInt(Mathf.Sign(blackboard.body.velocity.x));
+        int signInput = Mathf.RoundToInt(rawHorizontal);
+        bool ifSameSign = (Mathf.Abs(blackboard.body.velocity.x) < Mathf.Abs(horizontalVelocity) &&
+            signBody == signInput);
+        bool ifDifferentSign = signInput == -1 ? signBody != signInput && blackboard.body.velocity.x > horizontalVelocity 
+                                               : signBody != signInput && blackboard.body.velocity.x <= horizontalVelocity;
+        if (ifSameSign || 
+            ifDifferentSign)
+        { 
+            blackboard.body.velocity = new Vector2(horizontalVelocity, blackboard.body.velocity.y);
+        }
         return 0;
     }
 }

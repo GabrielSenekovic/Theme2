@@ -17,6 +17,11 @@ public class Background : MonoBehaviour
                 backgrounds[i].transform.position = 
                     new Vector2(backgrounds[i].transform.position.x + width /16 * 3 * horizontalDir, Camera.main.transform.position.y);
             }
+            else
+            {
+                backgrounds[i].transform.position =
+                    new Vector2(backgrounds[i].transform.position.x, Camera.main.transform.position.y);
+            }
         }
     }
 }
