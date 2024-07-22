@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class Cannon : MonoBehaviour
 {
 
-    public enum dir {LEFT, RIGHT, BOTH};
+    public enum dir {LEFT, RIGHT, BOTH, NONE};
 
     public dir ShootDir;
 
@@ -25,17 +25,55 @@ public class Cannon : MonoBehaviour
 
     private bool initialized;
 
+    [SerializeField] List<Sprite> sprites;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         timer = shootCoolDown - 30;
-        switch(ShootDir)
+
+
+        Vector3Int pos = new Vector3Int(Mathf.FloorToInt(transform.localPosition.x), Mathf.FloorToInt(transform.localPosition.y), (int)transform.localPosition.z) * 2;
+        
+        GetModifierValue(pos, out ModifierTile.ModifierValue val);
+        ShootDir = dir.NONE;
+        if (val.HasFlag(ModifierTile.ModifierValue.Down))
+        {
+            ShootDir = dir.BOTH;
+            GetComponentInChildren<SpriteRenderer>().sprite = sprites[0];
+        }
+        else if (val.HasFlag(ModifierTile.ModifierValue.Left))
+        {
+            ShootDir = dir.LEFT;
+            GetComponentInChildren<SpriteRenderer>().sprite = sprites[1];
+        }
+        else if (val.HasFlag(ModifierTile.ModifierValue.Right))
+        {
+            ShootDir = dir.RIGHT;
+            GetComponentInChildren<SpriteRenderer>().sprite = sprites[2];
+        }
+
+        switch (ShootDir)
         {
             case dir.LEFT: startpos = new Vector3(transform.position.x -1, transform.position.y, transform.position.z); break; 
             case dir.RIGHT: startpos = new Vector3(transform.position.x +1, transform.position.y, transform.position.z); break; 
             case dir.BOTH: startpos = new Vector3(transform.position.x, transform.position.y, transform.position.z); break; 
         }
+    }
+
+    bool GetModifierValue(Vector3Int pos, out ModifierTile.ModifierValue val)
+    {
+        ModifierTile tile = TilemapManager.Instance.GetTileMap(TilemapFunction.MODIFIER).GetTile(pos + Vector3Int.down) as ModifierTile;
+        TilemapManager.Instance.GetTileMap(TilemapFunction.MODIFIER).SetColor(pos + Vector3Int.down, Color.clear);
+        if (tile)
+        {
+            val = tile.value;
+            return true;
+        }
+        val = 0;
+        return false;
     }
 
     // Update is called once per frame
@@ -65,7 +103,7 @@ public class Cannon : MonoBehaviour
             {
                 ShootBothWays();
             }
-            else
+            else if(ShootDir == dir.LEFT || ShootDir == dir.RIGHT)
             {
                 Shoot();
             }

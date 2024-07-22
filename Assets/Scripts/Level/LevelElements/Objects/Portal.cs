@@ -53,19 +53,22 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!dormant && collision.gameObject.CompareTag("Player"))
+        if (!dormant && collision.gameObject.GetComponent<Rigidbody2D>())
         {
             portalScript.dormant = true;
             Vector2 portPos = portalObject.transform.position;
             collision.transform.position = portPos;
-            Vector3 camPos = Camera.main.transform.position;
-            Camera.main.transform.position = new Vector3(portPos.x, portPos.y , camPos.z);
+            if (collision.CompareTag("Player"))
+            { 
+                Vector3 camPos = Camera.main.transform.position;
+                Camera.main.transform.position = new Vector3(portPos.x, portPos.y, camPos.z);
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.GetComponent<Rigidbody2D>())
         {
             dormant = false;
         }

@@ -18,7 +18,7 @@ public class CameraPan : MonoBehaviour
     public float[] panOffsets = new float[4];
 
     Tilemap tileMap;
-    Tilemap cameraMap;
+    [SerializeField] Tilemap cameraMap;
 
     //public enum WALLS { LEFT, RIGHT, BOTH, NONE };
 
