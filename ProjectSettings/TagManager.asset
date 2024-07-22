@@ -51,3 +51,6 @@ TagManager:
   - name: Modifiers
     uniqueID: 2350071821
     locked: 0
+  - name: Vignette
+    uniqueID: 2534034811
+    locked: 0
